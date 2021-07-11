@@ -12,5 +12,5 @@ A Soft UI (Simple) Calculator created using Flutter.
 </p>
 
 ## Dependencies
-
-  `math_expressions: ^2.0.0`
+ - `cupertino_icons: ^1.0.2`
+ - `math_expressions: ^2.0.0`
