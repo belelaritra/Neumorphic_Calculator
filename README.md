@@ -1,16 +1,16 @@
-# calculator
+# Neumorphic Calculator
 
-A new Flutter project.
+A Soft UI (Simple) Calculator created using Flutter.
 
-## Getting Started
+## ScreenShot
 
-This project is a starting point for a Flutter application.
+<p float="left">
+  <img src="https://github.com/belelaritra/Neumorphic_Calculator/blob/main/ScreenShot%20ios.png" width="200" height="400" />
+  <img src="https://github.com/belelaritra/Neumorphic_Calculator/blob/main/ScreenShot%20Android.png" width="207" height="407" />
+  </br>
+  &nbsp;&emsp;&emsp;&emsp;&emsp;&emsp;IOS &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;Android
+</p>
 
-A few resources to get you started if this is your first Flutter project:
+## Dependencies
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+  `math_expressions: ^2.0.0`
