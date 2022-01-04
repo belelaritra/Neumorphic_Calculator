@@ -3,8 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_vibrate/flutter_vibrate.dart';
 
 import '/common/box_shadow.dart';
-import '../button_press.dart';
 import '../main.dart';
+import '../utils/button_press.dart';
 
 Widget buildButtonOval(
     String buttonVal, double height, double width, WidgetRef ref,
@@ -21,6 +21,8 @@ Widget buildButtonOval(
       boxShadow: [boxShadow1(), boxShadow2()],
     ),
     child: MaterialButton(
+      splashColor: Colors.transparent,
+      highlightColor: Colors.transparent,
       padding: EdgeInsets.symmetric(
           horizontal: width * 0.05, vertical: height * 0.01),
       child: Text(

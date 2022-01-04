@@ -2,8 +2,8 @@
     package="com.neumorphic.calculator">
     <uses-permission android:name="android.permission.VIBRATE" />
    <application
-        android:label="calculator"
-        android:icon="@mipmap/ic_launcher">
+        android:label="Calculator"
+        android:icon="@mipmap/launcher_icon">
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"

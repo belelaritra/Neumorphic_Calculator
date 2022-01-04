@@ -3,8 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_vibrate/flutter_vibrate.dart';
 
 import '/common/box_shadow.dart';
-import '../button_press.dart';
 import '../main.dart';
+import '../utils/button_press.dart';
 
 Widget buildButton(String buttonVal, double height, double width, WidgetRef ref,
     [Color buttoncolor = const Color(0xFFE0E0E0),
@@ -19,6 +19,8 @@ Widget buildButton(String buttonVal, double height, double width, WidgetRef ref,
       boxShadow: [boxShadow1(), boxShadow2()],
     ),
     child: MaterialButton(
+      splashColor: Colors.transparent,
+      highlightColor: Colors.transparent,
       padding: const EdgeInsets.all(24.0),
       child: Text(
         buttonVal,
