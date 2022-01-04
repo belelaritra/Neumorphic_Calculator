@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_vibrate/flutter_vibrate.dart';
 
 import '/common/box_shadow.dart';
 import '../button_press.dart';
+import '../main.dart';
 
 Widget buildButton(String buttonVal, double height, double width, WidgetRef ref,
     [Color buttoncolor = const Color(0xFFE0E0E0),
@@ -26,7 +28,12 @@ Widget buildButton(String buttonVal, double height, double width, WidgetRef ref,
           color: textcolor,
         ),
       ),
-      onPressed: () => buttonPress.buttonPressed(buttonVal, ref),
+      onPressed: () {
+        if (ref.watch(hapticFeedbackProvider.state).state) {
+          Vibrate.feedback(FeedbackType.success);
+        }
+        buttonPress.buttonPressed(buttonVal, ref);
+      },
     ),
   ));
 }

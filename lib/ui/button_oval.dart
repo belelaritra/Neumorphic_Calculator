@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_vibrate/flutter_vibrate.dart';
 
 import '/common/box_shadow.dart';
 import '../button_press.dart';
+import '../main.dart';
 
-Widget buildButtonoval(
+Widget buildButtonOval(
     String buttonVal, double height, double width, WidgetRef ref,
     [Color buttoncolor = const Color(0xFFDBDBF9),
     Color textcolor = const Color(0xFF7F7FA5)]) {
@@ -26,7 +28,12 @@ Widget buildButtonoval(
         style: TextStyle(
             color: textcolor, fontSize: 15, fontWeight: FontWeight.bold),
       ),
-      onPressed: () => buttonPress.buttonPressed(buttonVal, ref),
+      onPressed: () async {
+        if (ref.watch(hapticFeedbackProvider.state).state) {
+          Vibrate.feedback(FeedbackType.success);
+        }
+        buttonPress.buttonPressed(buttonVal, ref);
+      },
     ),
   );
 }

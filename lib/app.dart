@@ -1,20 +1,76 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'main.dart';
 import 'ui/button.dart';
 import 'ui/button_oval.dart';
 
-class CalculatorApp extends ConsumerWidget {
+class CalculatorApp extends ConsumerStatefulWidget {
   const CalculatorApp({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<ConsumerStatefulWidget> createState() => _CalculatorAppState();
+}
+
+class _CalculatorAppState extends ConsumerState<CalculatorApp> {
+  late final _prefs;
+
+  Future<void> loadSharedPreferencesInstance() async {
+    _prefs = await SharedPreferences.getInstance();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    loadSharedPreferencesInstance();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     final double height = MediaQuery.of(context).size.height;
     final double width = MediaQuery.of(context).size.width;
 
     return SafeArea(
       child: Scaffold(
+          appBar: AppBar(
+            backgroundColor: const Color(0xFF525283),
+            title: const Text('Calculator'),
+            actions: <Widget>[
+              IconButton(
+                icon: const Icon(Icons.settings),
+                onPressed: () {
+                  showDialog(
+                      context: context,
+                      builder: (context) => AlertDialog(
+                          title: const Text('Settings'),
+                          actionsAlignment: MainAxisAlignment.spaceBetween,
+                          content: Row(
+                            children: [
+                              const Text('Haptic Feedback'),
+                              Consumer(
+                                builder: (context, ref, _) {
+                                  return Checkbox(
+                                    value: ref
+                                        .watch(hapticFeedbackProvider.state)
+                                        .state,
+                                    onChanged: (bool? value) async {
+                                      await _prefs.setBool(
+                                          'haptic_feedback', value);
+                                      ref
+                                          .watch(hapticFeedbackProvider.state)
+                                          .state = value!;
+                                    },
+                                  );
+                                },
+                              )
+                            ],
+                          )));
+                },
+              ),
+            ],
+          ),
           backgroundColor: Colors.grey[300],
           body: Column(
             children: <Widget>[
@@ -79,10 +135,10 @@ class CalculatorApp extends ConsumerWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
-                        buildButtonoval('√x', height, width, ref),
-                        buildButtonoval('^', height, width, ref),
-                        buildButtonoval('e', height, width, ref),
-                        buildButtonoval('%', height, width, ref),
+                        buildButtonOval('√x', height, width, ref),
+                        buildButtonOval('^', height, width, ref),
+                        buildButtonOval('e', height, width, ref),
+                        buildButtonOval('%', height, width, ref),
                       ],
                     ),
                     Row(
