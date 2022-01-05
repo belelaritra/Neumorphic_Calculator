@@ -12,14 +12,15 @@ class AppTheme {
           secondaryVariant: const Color(0xFF4d4d6e),
           surface: const Color(
               0xFF7777a9), //using this as equals to button background
-          background: const Color(0xFFF8C6C6),  //using this as clear button
+          background: const Color(0xFFF8C6C6), //using this as clear button
           error: const Color(0xFFff0000),
           onPrimary: const Color(0xFFDBDBF9),
           onSecondary: const Color(0xFF262636),
           onSurface: Colors.white, //using this as upper shadow color
           onBackground:
               Colors.blueGrey.shade200, //using this as lower shadow color
-          onError: const Color(0xFFFFFFFF), //using this as equals to button text
+          onError:
+              const Color(0xFFFFFFFF), //using this as equals to button text
           brightness: Brightness.light));
 
   static final darkTheme = ThemeData(

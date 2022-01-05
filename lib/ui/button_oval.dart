@@ -33,7 +33,9 @@ Widget buildButtonOval(
       child: Text(
         buttonVal,
         style: TextStyle(
-            color: textcolor.withOpacity(0.7), fontSize: 15, fontWeight: FontWeight.bold),
+            color: textcolor.withOpacity(0.7),
+            fontSize: 15,
+            fontWeight: FontWeight.bold),
       ),
       onPressed: () async {
         if (ref.watch(hapticFeedbackProvider.state).state) {

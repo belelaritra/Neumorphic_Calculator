@@ -153,16 +153,17 @@ class _CalculatorAppState extends ConsumerState<CalculatorApp> {
                                         decoration: const BoxDecoration(
                                           shape: BoxShape.circle,
                                         ),
-                                        child: Icon(Icons.screenshot,
-                                            color:
-                                                themeController.currentTheme ==
-                                                        ThemeMode.system
-                                                    ? Theme.of(context)
-                                                        .colorScheme
-                                                        .secondary
-                                                    : Theme.of(context)
-                                                        .colorScheme
-                                                        .surface,)),
+                                        child: Icon(
+                                          Icons.screenshot,
+                                          color: themeController.currentTheme ==
+                                                  ThemeMode.system
+                                              ? Theme.of(context)
+                                                  .colorScheme
+                                                  .secondary
+                                              : Theme.of(context)
+                                                  .colorScheme
+                                                  .surface,
+                                        )),
                                   ),
                                   Padding(
                                     padding: EdgeInsets.symmetric(
