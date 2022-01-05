@@ -1,6 +1,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.neumorphic.calculator">
     <uses-permission android:name="android.permission.VIBRATE" />
+    <queries>
+    <intent>
+        <action android:name="android.intent.action.VIEW" />
+        <data android:scheme="https" />
+    </intent>
+</queries>
    <application
         android:label="Calculator"
         android:icon="@mipmap/launcher_icon">

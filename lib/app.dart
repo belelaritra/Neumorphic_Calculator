@@ -1,12 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_vibrate/flutter_vibrate.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'common/buttons.dart';
 import 'main.dart';
-import 'ui/button.dart';
-import 'ui/button_oval.dart';
-import 'ui/enlarged_button.dart';
 import 'utils/url_launcher.dart';
 
 class CalculatorApp extends ConsumerStatefulWidget {
@@ -49,12 +48,12 @@ class _CalculatorAppState extends ConsumerState<CalculatorApp> {
                   children: [
                     Padding(
                       padding: EdgeInsets.only(left: width * 0.05),
-                      child: const Text(
+                      child: Text(
                         'Settings',
                         style: TextStyle(
                             fontSize: 24,
                             fontWeight: FontWeight.bold,
-                            color: Color(0xFF525283)),
+                            color: Theme.of(context).colorScheme.secondary),
                       ),
                     ),
                     Padding(
@@ -63,25 +62,33 @@ class _CalculatorAppState extends ConsumerState<CalculatorApp> {
                         height: height * 0.08,
                         padding: EdgeInsets.only(left: width * 0.05),
                         decoration: BoxDecoration(
-                            color: const Color(0xFF525283).withOpacity(0.1),
+                            color: Theme.of(context)
+                                .colorScheme
+                                .secondary
+                                .withOpacity(0.1),
                             borderRadius: const BorderRadius.only(
                                 topRight: Radius.circular(100.0),
                                 bottomRight: Radius.circular(100.0))),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            const Text('Haptic Feedback',
+                            Text('Haptic Feedback',
                                 style: TextStyle(
                                     fontWeight: FontWeight.bold,
-                                    color: Color(0xFF525283))),
+                                    color: Theme.of(context)
+                                        .colorScheme
+                                        .secondary)),
                             Consumer(
                               builder: (context, ref, _) {
                                 return Checkbox(
                                   shape: const CircleBorder(),
-                                  checkColor: const Color(0xFF525283),
-                                  activeColor: const Color(0xFFDBDBF9),
-                                  side: const BorderSide(
-                                    color: Color(0xFF525283),
+                                  checkColor:
+                                      Theme.of(context).colorScheme.secondary,
+                                  activeColor:
+                                      Theme.of(context).scaffoldBackgroundColor,
+                                  side: BorderSide(
+                                    color:
+                                        Theme.of(context).colorScheme.secondary,
                                   ),
                                   value: ref
                                       .watch(hapticFeedbackProvider.state)
@@ -107,17 +114,22 @@ class _CalculatorAppState extends ConsumerState<CalculatorApp> {
                         padding: EdgeInsets.only(
                             left: width * 0.05, right: width * 0.05),
                         decoration: BoxDecoration(
-                            color: const Color(0xFF525283).withOpacity(0.1),
+                            color: Theme.of(context)
+                                .colorScheme
+                                .secondary
+                                .withOpacity(0.1),
                             borderRadius: const BorderRadius.only(
                                 topRight: Radius.circular(100.0),
                                 bottomRight: Radius.circular(100.0))),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            const Text('Theme',
+                            Text('Theme',
                                 style: TextStyle(
                                     fontWeight: FontWeight.bold,
-                                    color: Color(0xFF525283))),
+                                    color: Theme.of(context)
+                                        .colorScheme
+                                        .secondary)),
                             Consumer(
                               builder: (context, ref, _) {
                                 return Row(children: [
@@ -125,6 +137,12 @@ class _CalculatorAppState extends ConsumerState<CalculatorApp> {
                                     splashColor: Colors.transparent,
                                     highlightColor: Colors.transparent,
                                     onTap: () async {
+                                      if (ref
+                                          .watch(hapticFeedbackProvider.state)
+                                          .state) {
+                                        Vibrate.feedback(FeedbackType.success);
+                                      }
+                                      Navigator.of(context).pop();
                                       themeController
                                           .changeTheme(ThemeMode.system);
                                       await _prefs.setInt('theme_mode', 0);
@@ -132,15 +150,19 @@ class _CalculatorAppState extends ConsumerState<CalculatorApp> {
                                     child: Container(
                                         width: 24,
                                         height: 24,
-                                        decoration: BoxDecoration(
-                                          color: themeController.currentTheme ==
-                                                  ThemeMode.system
-                                              ? const Color(0xFF525283)
-                                              : const Color(0xFFE0E0E0),
+                                        decoration: const BoxDecoration(
                                           shape: BoxShape.circle,
                                         ),
-                                        child: const Icon(Icons.screenshot,
-                                            size: 20)),
+                                        child: Icon(Icons.screenshot,
+                                            color:
+                                                themeController.currentTheme ==
+                                                        ThemeMode.system
+                                                    ? Theme.of(context)
+                                                        .colorScheme
+                                                        .secondary
+                                                    : Theme.of(context)
+                                                        .colorScheme
+                                                        .surface,)),
                                   ),
                                   Padding(
                                     padding: EdgeInsets.symmetric(
@@ -149,6 +171,13 @@ class _CalculatorAppState extends ConsumerState<CalculatorApp> {
                                       splashColor: Colors.transparent,
                                       highlightColor: Colors.transparent,
                                       onTap: () async {
+                                        if (ref
+                                            .watch(hapticFeedbackProvider.state)
+                                            .state) {
+                                          Vibrate.feedback(
+                                              FeedbackType.success);
+                                        }
+                                        Navigator.of(context).pop();
                                         themeController
                                             .changeTheme(ThemeMode.light);
                                         await _prefs.setInt('theme_mode', 1);
@@ -156,22 +185,33 @@ class _CalculatorAppState extends ConsumerState<CalculatorApp> {
                                       child: Container(
                                           width: 24,
                                           height: 24,
-                                          decoration: BoxDecoration(
+                                          decoration: const BoxDecoration(
+                                            shape: BoxShape.circle,
+                                          ),
+                                          child: Icon(
+                                            Icons.wb_sunny,
                                             color:
                                                 themeController.currentTheme ==
                                                         ThemeMode.light
-                                                    ? const Color(0xFF525283)
-                                                    : const Color(0xFFE0E0E0),
-                                            shape: BoxShape.circle,
-                                          ),
-                                          child: const Icon(Icons.wb_sunny,
-                                              size: 20)),
+                                                    ? Theme.of(context)
+                                                        .colorScheme
+                                                        .secondary
+                                                    : Theme.of(context)
+                                                        .colorScheme
+                                                        .surface,
+                                          )),
                                     ),
                                   ),
                                   InkWell(
                                     splashColor: Colors.transparent,
                                     highlightColor: Colors.transparent,
                                     onTap: () async {
+                                      if (ref
+                                          .watch(hapticFeedbackProvider.state)
+                                          .state) {
+                                        Vibrate.feedback(FeedbackType.success);
+                                      }
+                                      Navigator.of(context).pop();
                                       themeController
                                           .changeTheme(ThemeMode.dark);
                                       await _prefs.setInt('theme_mode', 2);
@@ -179,15 +219,20 @@ class _CalculatorAppState extends ConsumerState<CalculatorApp> {
                                     child: Container(
                                         width: 24,
                                         height: 24,
-                                        decoration: BoxDecoration(
-                                          color: themeController.currentTheme ==
-                                                  ThemeMode.dark
-                                              ? const Color(0xFF525283)
-                                              : const Color(0xFFE0E0E0),
+                                        decoration: const BoxDecoration(
                                           shape: BoxShape.circle,
                                         ),
-                                        child: const Icon(Icons.brightness_3,
-                                            size: 20)),
+                                        child: Icon(
+                                          Icons.brightness_3,
+                                          color: themeController.currentTheme ==
+                                                  ThemeMode.dark
+                                              ? Theme.of(context)
+                                                  .colorScheme
+                                                  .secondary
+                                              : Theme.of(context)
+                                                  .colorScheme
+                                                  .surface,
+                                        )),
                                   ),
                                 ]);
                               },
@@ -203,22 +248,29 @@ class _CalculatorAppState extends ConsumerState<CalculatorApp> {
                         padding: EdgeInsets.only(
                             left: width * 0.05, right: width * 0.05),
                         decoration: BoxDecoration(
-                            color: const Color(0xFF525283).withOpacity(0.1),
+                            color: Theme.of(context)
+                                .colorScheme
+                                .secondary
+                                .withOpacity(0.1),
                             borderRadius: const BorderRadius.only(
                                 topRight: Radius.circular(100.0),
                                 bottomRight: Radius.circular(100.0))),
                         child: InkWell(
+                          splashColor: Colors.transparent,
+                          highlightColor: Colors.transparent,
                           onTap: () => launchURL(),
                           child: Row(
-                            children: const [
+                            children: [
                               Icon(
                                 Icons.info_outline,
-                                color: Color(0xFF525283),
+                                color: Theme.of(context).colorScheme.secondary,
                               ),
                               Text('      About',
                                   style: TextStyle(
                                       fontWeight: FontWeight.bold,
-                                      color: Color(0xFF525283))),
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .secondary)),
                             ],
                           ),
                         ),
@@ -230,8 +282,13 @@ class _CalculatorAppState extends ConsumerState<CalculatorApp> {
             ),
           ),
           appBar: AppBar(
+            foregroundColor: Theme.of(context).colorScheme.secondary,
+            backgroundColor: Theme.of(context).scaffoldBackgroundColor,
             elevation: 0,
-            title: const Text('Calculator'),
+            title: Text('Calculator',
+                style: TextStyle(
+                    fontSize: 20,
+                    color: Theme.of(context).colorScheme.secondary)),
           ),
           body: Column(
             children: <Widget>[
@@ -250,9 +307,12 @@ class _CalculatorAppState extends ConsumerState<CalculatorApp> {
                         begin: const Alignment(-1, -4),
                         end: const Alignment(1.5, 4),
                         colors: [
-                          Colors.grey.withOpacity(0.3),
-                          const Color(0xFFE0E0E0),
-                          Colors.white.withOpacity(0.5),
+                          Theme.of(context)
+                              .colorScheme
+                              .onBackground
+                              .withOpacity(0.3),
+                          Theme.of(context).scaffoldBackgroundColor,
+                          Theme.of(context).colorScheme.onSurface,
                         ],
                       ),
                       borderRadius: BorderRadius.circular(25),
@@ -284,10 +344,12 @@ class _CalculatorAppState extends ConsumerState<CalculatorApp> {
                                 child: SelectableText(
                                   expression,
                                   textAlign: TextAlign.end,
-                                  style: const TextStyle(
+                                  style: TextStyle(
                                       fontSize: 28,
                                       fontWeight: FontWeight.bold,
-                                      color: Color(0xFF41416E)),
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .secondary),
                                 ),
                               ),
                             );
@@ -298,245 +360,7 @@ class _CalculatorAppState extends ConsumerState<CalculatorApp> {
                   ),
                 ),
               ),
-              Padding(
-                padding: EdgeInsets.only(bottom: height * 0.01),
-                child: Column(
-                  children: <Widget>[
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: <Widget>[
-                        buildButtonOval(
-                            '√x',
-                            height,
-                            width,
-                            ref,
-                            Theme.of(context).colorScheme.primary,
-                            Theme.of(context).colorScheme.secondary,
-                            Theme.of(context).colorScheme.onSurface,
-                            Theme.of(context).colorScheme.onBackground),
-                        buildButtonOval(
-                            '^',
-                            height,
-                            width,
-                            ref,
-                            Theme.of(context).colorScheme.primary,
-                            Theme.of(context).colorScheme.secondary,
-                            Theme.of(context).colorScheme.onSurface,
-                            Theme.of(context).colorScheme.onBackground),
-                        buildButtonOval(
-                            'e',
-                            height,
-                            width,
-                            ref,
-                            Theme.of(context).colorScheme.primary,
-                            Theme.of(context).colorScheme.secondary,
-                            Theme.of(context).colorScheme.onSurface,
-                            Theme.of(context).colorScheme.onBackground),
-                        buildButtonOval(
-                            '%',
-                            height,
-                            width,
-                            ref,
-                            Theme.of(context).colorScheme.primary,
-                            Theme.of(context).colorScheme.secondary,
-                            Theme.of(context).colorScheme.onSurface,
-                            Theme.of(context).colorScheme.onBackground),
-                      ],
-                    ),
-                    Row(
-                      children: <Widget>[
-                        buildButton(
-                            'AC',
-                            height,
-                            width,
-                            ref,
-                            Theme.of(context).colorScheme.primary,
-                            Theme.of(context).colorScheme.secondary,
-                            Theme.of(context).colorScheme.onSurface,
-                            Theme.of(context).colorScheme.onBackground),
-                        buildButton(
-                            '±',
-                            height,
-                            width,
-                            ref,
-                            Theme.of(context).colorScheme.primary,
-                            Theme.of(context).colorScheme.secondary,
-                            Theme.of(context).colorScheme.onSurface,
-                            Theme.of(context).colorScheme.onBackground),
-                        buildButton(
-                            '÷',
-                            height,
-                            width,
-                            ref,
-                            Theme.of(context).colorScheme.primary,
-                            Theme.of(context).colorScheme.secondary,
-                            Theme.of(context).colorScheme.onSurface,
-                            Theme.of(context).colorScheme.onBackground),
-                        buildButton(
-                            '⌫',
-                            height,
-                            width,
-                            ref,
-                            const Color(0xFFF8C6C6),
-                            const Color(0xFFFF7B7B),
-                            Theme.of(context).colorScheme.onSurface,
-                            Theme.of(context).colorScheme.onBackground),
-                      ],
-                    ),
-                    Row(
-                      children: <Widget>[
-                        buildButton(
-                            '7',
-                            height,
-                            width,
-                            ref,
-                            Theme.of(context).scaffoldBackgroundColor,
-                            Theme.of(context).colorScheme.secondary,
-                            Theme.of(context).colorScheme.onSurface,
-                            Theme.of(context).colorScheme.onBackground),
-                        buildButton(
-                            '8',
-                            height,
-                            width,
-                            ref,
-                            Theme.of(context).scaffoldBackgroundColor,
-                            Theme.of(context).colorScheme.secondary,
-                            Theme.of(context).colorScheme.onSurface,
-                            Theme.of(context).colorScheme.onBackground),
-                        buildButton(
-                            '9',
-                            height,
-                            width,
-                            ref,
-                            Theme.of(context).scaffoldBackgroundColor,
-                            Theme.of(context).colorScheme.secondary,
-                            Theme.of(context).colorScheme.onSurface,
-                            Theme.of(context).colorScheme.onBackground),
-                        buildButton(
-                            'x',
-                            height,
-                            width,
-                            ref,
-                            Theme.of(context).colorScheme.primary,
-                            Theme.of(context).colorScheme.secondary,
-                            Theme.of(context).colorScheme.onSurface,
-                            Theme.of(context).colorScheme.onBackground)
-                      ],
-                    ),
-                    Row(
-                      children: <Widget>[
-                        buildButton(
-                            '4',
-                            height,
-                            width,
-                            ref,
-                            Theme.of(context).scaffoldBackgroundColor,
-                            Theme.of(context).colorScheme.secondary,
-                            Theme.of(context).colorScheme.onSurface,
-                            Theme.of(context).colorScheme.onBackground),
-                        buildButton(
-                            '5',
-                            height,
-                            width,
-                            ref,
-                            Theme.of(context).scaffoldBackgroundColor,
-                            Theme.of(context).colorScheme.secondary,
-                            Theme.of(context).colorScheme.onSurface,
-                            Theme.of(context).colorScheme.onBackground),
-                        buildButton(
-                            '6',
-                            height,
-                            width,
-                            ref,
-                            Theme.of(context).scaffoldBackgroundColor,
-                            Theme.of(context).colorScheme.secondary,
-                            Theme.of(context).colorScheme.onSurface,
-                            Theme.of(context).colorScheme.onBackground),
-                        buildButton(
-                            '-',
-                            height,
-                            width,
-                            ref,
-                            Theme.of(context).colorScheme.primary,
-                            Theme.of(context).colorScheme.secondary,
-                            Theme.of(context).colorScheme.onSurface,
-                            Theme.of(context).colorScheme.onBackground)
-                      ],
-                    ),
-                    Row(
-                      children: <Widget>[
-                        buildButton(
-                            '1',
-                            height,
-                            width,
-                            ref,
-                            Theme.of(context).scaffoldBackgroundColor,
-                            Theme.of(context).colorScheme.secondary,
-                            Theme.of(context).colorScheme.onSurface,
-                            Theme.of(context).colorScheme.onBackground),
-                        buildButton(
-                            '2',
-                            height,
-                            width,
-                            ref,
-                            Theme.of(context).scaffoldBackgroundColor,
-                            Theme.of(context).colorScheme.secondary,
-                            Theme.of(context).colorScheme.onSurface,
-                            Theme.of(context).colorScheme.onBackground),
-                        buildButton(
-                            '3',
-                            height,
-                            width,
-                            ref,
-                            Theme.of(context).scaffoldBackgroundColor,
-                            Theme.of(context).colorScheme.secondary,
-                            Theme.of(context).colorScheme.onSurface,
-                            Theme.of(context).colorScheme.onBackground),
-                        buildButton(
-                            '+',
-                            height,
-                            width,
-                            ref,
-                            Theme.of(context).colorScheme.primary,
-                            Theme.of(context).colorScheme.secondary,
-                            Theme.of(context).colorScheme.onSurface,
-                            Theme.of(context).colorScheme.onBackground)
-                      ],
-                    ),
-                    Row(
-                      children: <Widget>[
-                        buildEnlargedButton(
-                            '0',
-                            height,
-                            width,
-                            ref,
-                            Theme.of(context).scaffoldBackgroundColor,
-                            Theme.of(context).colorScheme.secondary,
-                            Theme.of(context).colorScheme.onSurface,
-                            Theme.of(context).colorScheme.onBackground),
-                        buildButton(
-                            '.',
-                            height,
-                            width,
-                            ref,
-                            Theme.of(context).scaffoldBackgroundColor,
-                            Theme.of(context).colorScheme.secondary,
-                            Theme.of(context).colorScheme.onSurface,
-                            Theme.of(context).colorScheme.onBackground),
-                        buildButton(
-                            '=',
-                            height,
-                            width,
-                            ref,
-                            const Color(0xFF525283),
-                            const Color(0xFFFFFFFF),
-                            Theme.of(context).colorScheme.onSurface,
-                            Theme.of(context).colorScheme.onBackground),
-                      ],
-                    )
-                  ],
-                ),
-              ),
+              Buttons(height: height, width: width, ref: ref),
             ],
           )),
     );

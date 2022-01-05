@@ -7,9 +7,13 @@ import '../main.dart';
 import '../utils/button_press.dart';
 
 Widget buildButtonOval(
-    String buttonVal, double height, double width, WidgetRef ref,
+    String buttonVal,
+    double height,
+    double width,
+    WidgetRef ref,
     Color buttoncolor,
-    Color textcolor, Color upperShadow,
+    Color textcolor,
+    Color upperShadow,
     Color lowerShadow) {
   return Container(
     width: width * 0.2,
@@ -29,7 +33,7 @@ Widget buildButtonOval(
       child: Text(
         buttonVal,
         style: TextStyle(
-            color: textcolor, fontSize: 15, fontWeight: FontWeight.bold),
+            color: textcolor.withOpacity(0.7), fontSize: 15, fontWeight: FontWeight.bold),
       ),
       onPressed: () async {
         if (ref.watch(hapticFeedbackProvider.state).state) {

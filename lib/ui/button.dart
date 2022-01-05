@@ -34,7 +34,7 @@ Widget buildButton(
         style: TextStyle(
           fontSize: 20.0,
           fontWeight: FontWeight.bold,
-          color: textcolor,
+          color: textcolor.withOpacity(0.7),
         ),
       ),
       onPressed: () {

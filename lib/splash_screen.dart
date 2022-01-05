@@ -31,7 +31,8 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
       hapticFeedback = value.getBool('haptic_feedback') ?? true;
       themeMode = value.getInt('theme_mode') ?? 0;
       if (themeMode != 0) {
-        themeController.changeTheme(themeMode == 1 ? ThemeMode.light : ThemeMode.dark);
+        themeController
+            .changeTheme(themeMode == 1 ? ThemeMode.light : ThemeMode.dark);
       }
       ref.read(hapticFeedbackProvider.state).state = hapticFeedback;
       navigateToCalculator(hapticFeedback);
