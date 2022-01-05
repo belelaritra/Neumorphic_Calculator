@@ -16,6 +16,7 @@ class SplashScreen extends ConsumerStatefulWidget {
 
 class _SplashScreenState extends ConsumerState<SplashScreen> {
   bool hapticFeedback = true;
+  int themeMode = 0;
 
   void navigateToCalculator(bool hapticFeedback) {
     Navigator.of(context).pushReplacement(
@@ -25,9 +26,13 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
     );
   }
 
-  Future<void> checkHapticFeedback() async {
+  Future<void> checkState() async {
     await SharedPreferences.getInstance().then((value) {
       hapticFeedback = value.getBool('haptic_feedback') ?? true;
+      themeMode = value.getInt('theme_mode') ?? 0;
+      if (themeMode != 0) {
+        themeController.changeTheme(themeMode == 1 ? ThemeMode.light : ThemeMode.dark);
+      }
       ref.read(hapticFeedbackProvider.state).state = hapticFeedback;
       navigateToCalculator(hapticFeedback);
     });
@@ -36,7 +41,7 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    checkHapticFeedback();
+    checkState();
   }
 
   @override

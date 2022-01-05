@@ -6,9 +6,16 @@ import '/common/box_shadow.dart';
 import '../main.dart';
 import '../utils/button_press.dart';
 
-Widget buildButton(String buttonVal, double height, double width, WidgetRef ref,
-    [Color buttoncolor = const Color(0xFFE0E0E0),
-    Color textcolor = const Color(0xFF7F7FA5)]) {
+Widget buildButton(
+  String buttonVal,
+  double height,
+  double width,
+  WidgetRef ref,
+  Color buttoncolor,
+  Color textcolor,
+  Color upperShadow,
+  Color lowerShadow,
+) {
   return Expanded(
       child: Container(
     margin: EdgeInsets.symmetric(
@@ -16,7 +23,7 @@ Widget buildButton(String buttonVal, double height, double width, WidgetRef ref,
     decoration: BoxDecoration(
       color: buttoncolor,
       shape: BoxShape.circle,
-      boxShadow: [boxShadow1(), boxShadow2()],
+      boxShadow: [boxShadow1(lowerShadow), boxShadow2(upperShadow)],
     ),
     child: MaterialButton(
       splashColor: Colors.transparent,

@@ -8,8 +8,9 @@ import '../utils/button_press.dart';
 
 Widget buildButtonOval(
     String buttonVal, double height, double width, WidgetRef ref,
-    [Color buttoncolor = const Color(0xFFDBDBF9),
-    Color textcolor = const Color(0xFF7F7FA5)]) {
+    Color buttoncolor,
+    Color textcolor, Color upperShadow,
+    Color lowerShadow) {
   return Container(
     width: width * 0.2,
     height: height * 0.08,
@@ -18,7 +19,7 @@ Widget buildButtonOval(
     decoration: BoxDecoration(
       color: buttoncolor,
       borderRadius: BorderRadius.circular(50),
-      boxShadow: [boxShadow1(), boxShadow2()],
+      boxShadow: [boxShadow1(lowerShadow), boxShadow2(upperShadow)],
     ),
     child: MaterialButton(
       splashColor: Colors.transparent,
