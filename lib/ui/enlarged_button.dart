@@ -7,9 +7,14 @@ import '../main.dart';
 import '../utils/button_press.dart';
 
 Widget buildEnlargedButton(
-    String buttonVal, double height, double width, WidgetRef ref,
-    [Color buttoncolor = const Color(0xFFE0E0E0),
-    Color textcolor = const Color(0xFF7F7FA5)]) {
+    String buttonVal,
+    double height,
+    double width,
+    WidgetRef ref,
+    Color buttoncolor,
+    Color textcolor,
+    Color upperShadow,
+    Color lowerShadow) {
   return Container(
     width: width * 0.45,
     margin: EdgeInsets.symmetric(
@@ -17,7 +22,7 @@ Widget buildEnlargedButton(
     decoration: BoxDecoration(
       borderRadius: BorderRadius.circular(30.0),
       color: buttoncolor,
-      boxShadow: [boxShadow1(), boxShadow2()],
+      boxShadow: [boxShadow1(lowerShadow), boxShadow2(upperShadow)],
     ),
     child: MaterialButton(
       splashColor: Colors.transparent,
@@ -28,7 +33,7 @@ Widget buildEnlargedButton(
         style: TextStyle(
           fontSize: 20.0,
           fontWeight: FontWeight.bold,
-          color: textcolor,
+          color: textcolor.withOpacity(0.7),
         ),
       ),
       onPressed: () {

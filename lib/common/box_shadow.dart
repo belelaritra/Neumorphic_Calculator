@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 
-BoxShadow boxShadow1() {
+BoxShadow boxShadow1(Color lowerShadow) {
   return BoxShadow(
-      color: Colors.blueGrey.shade200,
+      color: lowerShadow,
       offset: const Offset(4.0, 4.0),
       blurRadius: 15.0,
       spreadRadius: 1.0);
 }
 
-BoxShadow boxShadow2() {
-  return const BoxShadow(
-      color: Colors.white,
-      offset: Offset(-4.0, -4.0),
+BoxShadow boxShadow2(Color upperShadow) {
+  return BoxShadow(
+      color: upperShadow,
+      offset: const Offset(-4.0, -4.0),
       blurRadius: 15.0,
       spreadRadius: 1.0);
 }
