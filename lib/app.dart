@@ -4,8 +4,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_vibrate/flutter_vibrate.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'common/buttons.dart';
 import 'main.dart';
+import 'ui/buttons.dart';
 import 'utils/url_launcher.dart';
 
 class CalculatorApp extends ConsumerStatefulWidget {

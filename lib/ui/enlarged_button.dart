@@ -27,7 +27,8 @@ Widget buildEnlargedButton(
     child: MaterialButton(
       splashColor: Colors.transparent,
       highlightColor: Colors.transparent,
-      padding: const EdgeInsets.all(24.0),
+      padding: EdgeInsets.symmetric(
+          vertical: height * 0.035715, horizontal: width * 0.066668),
       child: Text(
         buttonVal,
         style: TextStyle(
