@@ -4,7 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_vibrate/flutter_vibrate.dart';
 import 'package:math_expressions/math_expressions.dart';
 
-import '../main.dart';
+import '../../main.dart';
 
 class ButtonPress {
   String operand = '';

@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_vibrate/flutter_vibrate.dart';
 
-import '/common/box_shadow.dart';
-import '../main.dart';
+import '/src/common/box_shadow.dart';
+import '../../main.dart';
 import '../utils/button_press.dart';
 
-Widget buildButton(
+Widget buildCircleButton(
   String buttonVal,
   double height,
   double width,
@@ -18,7 +18,6 @@ Widget buildButton(
 ) {
   return Expanded(
       child: Container(
-    // height: ,
     margin: EdgeInsets.symmetric(
         vertical: height * 0.005, horizontal: width * 0.02),
     decoration: BoxDecoration(
@@ -27,10 +26,9 @@ Widget buildButton(
       boxShadow: [boxShadow1(lowerShadow), boxShadow2(upperShadow)],
     ),
     child: MaterialButton(
+      shape: const CircleBorder(),
       splashColor: Colors.transparent,
-      highlightColor: Colors.transparent,
-      padding: EdgeInsets.symmetric(
-          vertical: height * 0.035715, horizontal: width * 0.066668),
+      padding: const EdgeInsets.all(24.0),
       child: Text(
         buttonVal,
         style: TextStyle(
