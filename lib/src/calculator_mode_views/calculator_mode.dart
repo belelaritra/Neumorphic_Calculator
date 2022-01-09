@@ -1,11 +1,16 @@
 import 'package:flutter/cupertino.dart';
 
-class CalculatorMode extends ChangeNotifier {
-  bool _isAdvanced = false;
-  bool get isAdvanced => _isAdvanced;
+enum CalculatorModeEnum {
+  simple,
+  advanced,
+}
 
-  void toggleMode() {
-    _isAdvanced = !_isAdvanced;
+class CalculatorMode extends ChangeNotifier {
+  CalculatorModeEnum _mode = CalculatorModeEnum.simple;
+  CalculatorModeEnum get getCalculatorMode => _mode;
+
+  void toggleMode(CalculatorModeEnum _calculatorModeEnum) {
+    _mode = _calculatorModeEnum;
     notifyListeners();
   }
 }

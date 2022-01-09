@@ -4,6 +4,7 @@ import 'package:flutter_vibrate/flutter_vibrate.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../main.dart';
+import '../calculator_mode_views/calculator_mode.dart';
 import '../utils/url_launcher.dart';
 
 class CommonDrawer extends ConsumerStatefulWidget {
@@ -76,11 +77,20 @@ class _CommonDrawerState extends ConsumerState<CommonDrawer> {
                           side: BorderSide(
                             color: Theme.of(context).colorScheme.secondary,
                           ),
-                          value: calculatorMode.isAdvanced,
+                          value: calculatorMode.getCalculatorMode ==
+                              CalculatorModeEnum.advanced,
                           onChanged: (bool? value) async {
+                            if (ref.watch(hapticFeedbackProvider.state).state) {
+                              Vibrate.feedback(FeedbackType.success);
+                            }
+                            Navigator.of(context).pop();
                             await _prefs.setInt(
                                 'calculator_mode', value! ? 1 : 0);
-                            calculatorMode.toggleMode();
+                            calculatorMode.toggleMode(
+                                calculatorMode.getCalculatorMode ==
+                                        CalculatorModeEnum.advanced
+                                    ? CalculatorModeEnum.simple
+                                    : CalculatorModeEnum.advanced);
                           },
                         );
                       },
@@ -141,6 +151,7 @@ class _CommonDrawerState extends ConsumerState<CommonDrawer> {
                                     .watch(hapticFeedbackProvider.state)
                                     .state,
                                 onChanged: (bool? value) async {
+                                  Navigator.of(context).pop();
                                   await _prefs.setBool(
                                       'haptic_feedback', value);
                                   ref

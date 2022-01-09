@@ -26,7 +26,7 @@ class Buttons extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
               buildCircleButton(
-                  '⅟x',
+                  '^',
                   height,
                   width,
                   ref,

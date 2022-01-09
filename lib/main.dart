@@ -3,9 +3,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'src/calculator_mode_views/advanced_mode.dart';
 import 'src/calculator_mode_views/calculator_mode.dart';
-import 'src/calculator_mode_views/simple_mode.dart';
+import 'src/calculator_mode_views/calculator_mode_view_rebuilder.dart';
 import 'src/theme/app_theme.dart';
 import 'src/theme/theme_controller.dart';
 
@@ -35,14 +34,12 @@ class MyApp extends ConsumerStatefulWidget {
 
 class _MyAppState extends ConsumerState<MyApp> {
   bool hapticFeedback = true;
-  int calculatorModeView = 0;
   int themeMode = 0;
 
   Future<void> checkState() async {
     await SharedPreferences.getInstance().then((value) {
       hapticFeedback = value.getBool('haptic_feedback') ?? true;
       themeMode = value.getInt('theme_mode') ?? 0;
-      calculatorModeView = value.getInt('calculator_mode') ?? 0;
       if (themeMode != 0) {
         themeController
             .changeTheme(themeMode == 1 ? ThemeMode.light : ThemeMode.dark);
@@ -57,9 +54,6 @@ class _MyAppState extends ConsumerState<MyApp> {
     themeController.addListener(() {
       setState(() {});
     });
-    calculatorMode.addListener(() {
-      setState(() {});
-    });
     checkState();
   }
 
@@ -70,8 +64,6 @@ class _MyAppState extends ConsumerState<MyApp> {
         theme: AppTheme.lightTheme,
         darkTheme: AppTheme.darkTheme,
         themeMode: themeController.currentTheme,
-        home: calculatorModeView == 0
-            ? const SimpleMode()
-            : const AdvancedMode());
+        home: const CalculatorModeViewRebuilder());
   }
 }

@@ -13,6 +13,7 @@ class ButtonPress {
   final Parser p = Parser();
   late Expression exp;
   final ContextModel cm = ContextModel();
+  final fiveOperations = RegExp(r'(\+|\*|-|/|\^)$');
 
   buttonPressed(String btnVal, WidgetRef ref) {
     try {
@@ -22,11 +23,7 @@ class ButtonPress {
         ref.read(historyProvider.state).state = _history;
         ref.read(expressionProvider.state).state = _expression;
       } else if (btnVal == '<-') {
-        _expression = _expression.substring(0, _expression.length - 1);
-        ref.read(expressionProvider.state).state = _expression;
-      } else if (btnVal == '⅟x') {
-        final double reciprocal = 1 / double.parse(_expression);
-        _expression = reciprocal.toString();
+        _expression = _expression.substring(1, _expression.length - 1);
         ref.read(expressionProvider.state).state = _expression;
       } else if (btnVal == '=') {
         exp = p.parse(_expression);
@@ -123,7 +120,22 @@ class ButtonPress {
         if (btnVal == 'x') {
           btnVal = '*';
         }
-        _expression = _expression + btnVal;
+        if (_expression.isNotEmpty) {
+          if (fiveOperations.hasMatch(btnVal) &&
+              fiveOperations.hasMatch(_expression)) {
+            if (ref.watch(hapticFeedbackProvider.state).state) {
+              Vibrate.feedback(FeedbackType.error);
+            }
+          } else {
+            _expression += btnVal;
+          }
+        } else if (fiveOperations.hasMatch(btnVal)) {
+          if (ref.watch(hapticFeedbackProvider.state).state) {
+            Vibrate.feedback(FeedbackType.error);
+          }
+        } else {
+          _expression += btnVal;
+        }
         ref.read(expressionProvider.state).state = _expression;
       }
     } catch (_) {
