@@ -40,6 +40,7 @@ class _CalculatorModeViewRebuilderState
             : const AdvancedMode();
       });
     });
+    checkState();
     body = const SimpleMode();
   }
 

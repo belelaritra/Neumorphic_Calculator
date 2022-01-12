@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_vibrate/flutter_vibrate.dart';
 
-import '/src/common/box_shadow.dart';
-import '../../main.dart';
-import '../utils/button_press.dart';
+import '../../../main.dart';
+import '../../common/advanced_mode/box_shadow.dart';
+import '../../utils/button_press.dart';
 
 Widget buildRectangleButton(
     String buttonVal,
@@ -16,22 +16,25 @@ Widget buildRectangleButton(
     Color upperShadow,
     Color lowerShadow) {
   return Container(
-    width: width * 0.45,
-    margin: EdgeInsets.symmetric(
-        vertical: height * 0.005, horizontal: width * 0.03),
+    width: width * 0.22,
+    margin: EdgeInsets.only(
+        top: height * 0.0055,
+        bottom: height * 0.0055,
+        right: width * 0.02),
     decoration: BoxDecoration(
       borderRadius: BorderRadius.circular(30.0),
       color: buttoncolor,
       boxShadow: [boxShadow1(lowerShadow), boxShadow2(upperShadow)],
     ),
     child: MaterialButton(
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0)),
+      shape:
+          RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0)),
       splashColor: Colors.transparent,
-      padding: const EdgeInsets.all(24.0),
+      padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 15.0),
       child: Text(
         buttonVal,
         style: TextStyle(
-          fontSize: 20.0,
+          fontSize: 16.0,
           fontWeight: FontWeight.bold,
           color: textcolor.withOpacity(0.7),
         ),

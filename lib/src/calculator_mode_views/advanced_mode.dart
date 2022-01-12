@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../main.dart';
-import '../ui/buttons.dart';
+import '../common/advanced_mode/box_shadow.dart';
+import '../ui/advanced_mode/buttons.dart';
 
 class AdvancedMode extends ConsumerWidget {
   const AdvancedMode({Key? key}) : super(key: key);
@@ -17,23 +18,19 @@ class AdvancedMode extends ConsumerWidget {
         Expanded(
           child: Padding(
             padding: EdgeInsets.only(
-                top: height < 700 ? height * 0.005 : height * 0.01,
-                bottom: height < 700 ? height * 0.02 : height * 0.03,
+                top: height < 700 ? height * 0.007 : height * 0.03,
+                bottom: height < 700 ? height * 0.04 : height * 0.03,
                 left: width < 390 ? width * 0.035 : width * 0.06,
                 right: width < 390 ? width * 0.035 : width * 0.06),
             child: Container(
               padding: EdgeInsets.symmetric(
                   horizontal: width * 0.025, vertical: height * 0.0015),
               decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  begin: const Alignment(-1, -4),
-                  end: const Alignment(1.5, 4),
-                  colors: [
-                    Theme.of(context).colorScheme.onBackground.withOpacity(0.3),
-                    Theme.of(context).scaffoldBackgroundColor,
-                    Theme.of(context).colorScheme.onSurface,
-                  ],
-                ),
+                color: Theme.of(context).scaffoldBackgroundColor,
+                boxShadow: [
+                  boxShadow1(Theme.of(context).colorScheme.onBackground),
+                  boxShadow2(Theme.of(context).colorScheme.onSurface)
+                ],
                 borderRadius: BorderRadius.circular(25),
               ),
               child: Column(
@@ -46,6 +43,7 @@ class AdvancedMode extends ConsumerWidget {
                         alignment: Alignment.topRight,
                         child: SelectableText(
                           history,
+                          textAlign: TextAlign.end,
                           style: const TextStyle(
                               fontSize: 20, color: Color(0xFF7F7FA5)),
                         ),

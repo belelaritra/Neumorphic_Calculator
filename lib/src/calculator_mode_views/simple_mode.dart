@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../main.dart';
-import '../ui/buttons.dart';
+import '../common/simple_mode/box_shadow.dart';
+import '../ui/simple_mode/buttons.dart';
 
 class SimpleMode extends ConsumerWidget {
   const SimpleMode({Key? key}) : super(key: key);
@@ -25,15 +26,11 @@ class SimpleMode extends ConsumerWidget {
               padding: EdgeInsets.symmetric(
                   horizontal: width * 0.025, vertical: height * 0.0015),
               decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  begin: const Alignment(-1, -4),
-                  end: const Alignment(1.5, 4),
-                  colors: [
-                    Theme.of(context).colorScheme.onBackground.withOpacity(0.3),
-                    Theme.of(context).scaffoldBackgroundColor,
-                    Theme.of(context).colorScheme.onSurface,
-                  ],
-                ),
+                color: Theme.of(context).scaffoldBackgroundColor,
+                boxShadow: [
+                  boxShadow1(Theme.of(context).colorScheme.onBackground),
+                  boxShadow2(Theme.of(context).colorScheme.onSurface)
+                ],
                 borderRadius: BorderRadius.circular(25),
               ),
               child: Column(

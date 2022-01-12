@@ -23,7 +23,6 @@ class Buttons extends StatelessWidget {
       child: Column(
         children: <Widget>[
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
               buildCircleButton(
                   '^',
@@ -133,7 +132,7 @@ class Buttons extends StatelessWidget {
                   Theme.of(context).colorScheme.onSurface,
                   Theme.of(context).colorScheme.onBackground),
               buildCircleButton(
-                  'x',
+                  '*',
                   height,
                   width,
                   ref,
