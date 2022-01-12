@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../ui/button.dart';
-import '../ui/button_oval.dart';
-import '../ui/enlarged_button.dart';
+import 'circular_button.dart';
+import 'rectangular_button.dart';
 
 class Buttons extends StatelessWidget {
   const Buttons({
@@ -24,18 +23,8 @@ class Buttons extends StatelessWidget {
       child: Column(
         children: <Widget>[
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
-              buildButtonOval(
-                  '√x',
-                  height,
-                  width,
-                  ref,
-                  Theme.of(context).colorScheme.primary,
-                  Theme.of(context).colorScheme.secondary,
-                  Theme.of(context).colorScheme.onSurface,
-                  Theme.of(context).colorScheme.onBackground),
-              buildButtonOval(
+              buildCircleButton(
                   '^',
                   height,
                   width,
@@ -44,8 +33,8 @@ class Buttons extends StatelessWidget {
                   Theme.of(context).colorScheme.secondary,
                   Theme.of(context).colorScheme.onSurface,
                   Theme.of(context).colorScheme.onBackground),
-              buildButtonOval(
-                  'e',
+              buildCircleButton(
+                  '±',
                   height,
                   width,
                   ref,
@@ -53,8 +42,57 @@ class Buttons extends StatelessWidget {
                   Theme.of(context).colorScheme.secondary,
                   Theme.of(context).colorScheme.onSurface,
                   Theme.of(context).colorScheme.onBackground),
-              buildButtonOval(
+              buildCircleButton(
                   '%',
+                  height,
+                  width,
+                  ref,
+                  Theme.of(context).colorScheme.primary,
+                  Theme.of(context).colorScheme.secondary,
+                  Theme.of(context).colorScheme.onSurface,
+                  Theme.of(context).colorScheme.onBackground),
+              buildCircleButton(
+                  '<-',
+                  height,
+                  width,
+                  ref,
+                  Theme.of(context).colorScheme.background,
+                  const Color(0xFFFF7B7B),
+                  Theme.of(context).colorScheme.onSurface,
+                  Theme.of(context).colorScheme.onBackground),
+            ],
+          ),
+          Row(
+            children: <Widget>[
+              buildCircleButton(
+                  'C',
+                  height,
+                  width,
+                  ref,
+                  Theme.of(context).colorScheme.background,
+                  const Color(0xFFFF7B7B),
+                  Theme.of(context).colorScheme.onSurface,
+                  Theme.of(context).colorScheme.onBackground),
+              buildCircleButton(
+                  '(',
+                  height,
+                  width,
+                  ref,
+                  Theme.of(context).colorScheme.primary,
+                  Theme.of(context).colorScheme.secondary,
+                  Theme.of(context).colorScheme.onSurface,
+                  Theme.of(context).colorScheme.onBackground),
+              buildCircleButton(
+                  ')',
+                  height,
+                  width,
+                  ref,
+                  Theme.of(context).colorScheme.primary,
+                  Theme.of(context).colorScheme.secondary,
+                  Theme.of(context).colorScheme.onSurface,
+                  Theme.of(context).colorScheme.onBackground),
+              buildCircleButton(
+                  '/',
                   height,
                   width,
                   ref,
@@ -66,35 +104,35 @@ class Buttons extends StatelessWidget {
           ),
           Row(
             children: <Widget>[
-              buildButton(
-                  'AC',
+              buildCircleButton(
+                  '7',
                   height,
                   width,
                   ref,
-                  Theme.of(context).colorScheme.background,
-                  const Color(0xFFFF7B7B),
-                  Theme.of(context).colorScheme.onSurface,
-                  Theme.of(context).colorScheme.onBackground),
-              buildButton(
-                  '±',
-                  height,
-                  width,
-                  ref,
-                  Theme.of(context).colorScheme.primary,
+                  Theme.of(context).scaffoldBackgroundColor,
                   Theme.of(context).colorScheme.secondary,
                   Theme.of(context).colorScheme.onSurface,
                   Theme.of(context).colorScheme.onBackground),
-              buildButton(
-                  '÷',
+              buildCircleButton(
+                  '8',
                   height,
                   width,
                   ref,
-                  Theme.of(context).colorScheme.primary,
+                  Theme.of(context).scaffoldBackgroundColor,
                   Theme.of(context).colorScheme.secondary,
                   Theme.of(context).colorScheme.onSurface,
                   Theme.of(context).colorScheme.onBackground),
-              buildButton(
-                  'x',
+              buildCircleButton(
+                  '9',
+                  height,
+                  width,
+                  ref,
+                  Theme.of(context).scaffoldBackgroundColor,
+                  Theme.of(context).colorScheme.secondary,
+                  Theme.of(context).colorScheme.onSurface,
+                  Theme.of(context).colorScheme.onBackground),
+              buildCircleButton(
+                  '*',
                   height,
                   width,
                   ref,
@@ -106,8 +144,8 @@ class Buttons extends StatelessWidget {
           ),
           Row(
             children: <Widget>[
-              buildButton(
-                  '7',
+              buildCircleButton(
+                  '4',
                   height,
                   width,
                   ref,
@@ -115,8 +153,8 @@ class Buttons extends StatelessWidget {
                   Theme.of(context).colorScheme.secondary,
                   Theme.of(context).colorScheme.onSurface,
                   Theme.of(context).colorScheme.onBackground),
-              buildButton(
-                  '8',
+              buildCircleButton(
+                  '5',
                   height,
                   width,
                   ref,
@@ -124,8 +162,8 @@ class Buttons extends StatelessWidget {
                   Theme.of(context).colorScheme.secondary,
                   Theme.of(context).colorScheme.onSurface,
                   Theme.of(context).colorScheme.onBackground),
-              buildButton(
-                  '9',
+              buildCircleButton(
+                  '6',
                   height,
                   width,
                   ref,
@@ -133,7 +171,7 @@ class Buttons extends StatelessWidget {
                   Theme.of(context).colorScheme.secondary,
                   Theme.of(context).colorScheme.onSurface,
                   Theme.of(context).colorScheme.onBackground),
-              buildButton(
+              buildCircleButton(
                   '-',
                   height,
                   width,
@@ -146,8 +184,8 @@ class Buttons extends StatelessWidget {
           ),
           Row(
             children: <Widget>[
-              buildButton(
-                  '4',
+              buildCircleButton(
+                  '1',
                   height,
                   width,
                   ref,
@@ -155,8 +193,8 @@ class Buttons extends StatelessWidget {
                   Theme.of(context).colorScheme.secondary,
                   Theme.of(context).colorScheme.onSurface,
                   Theme.of(context).colorScheme.onBackground),
-              buildButton(
-                  '5',
+              buildCircleButton(
+                  '2',
                   height,
                   width,
                   ref,
@@ -164,8 +202,8 @@ class Buttons extends StatelessWidget {
                   Theme.of(context).colorScheme.secondary,
                   Theme.of(context).colorScheme.onSurface,
                   Theme.of(context).colorScheme.onBackground),
-              buildButton(
-                  '6',
+              buildCircleButton(
+                  '3',
                   height,
                   width,
                   ref,
@@ -173,7 +211,7 @@ class Buttons extends StatelessWidget {
                   Theme.of(context).colorScheme.secondary,
                   Theme.of(context).colorScheme.onSurface,
                   Theme.of(context).colorScheme.onBackground),
-              buildButton(
+              buildCircleButton(
                   '+',
                   height,
                   width,
@@ -186,47 +224,7 @@ class Buttons extends StatelessWidget {
           ),
           Row(
             children: <Widget>[
-              buildButton(
-                  '1',
-                  height,
-                  width,
-                  ref,
-                  Theme.of(context).scaffoldBackgroundColor,
-                  Theme.of(context).colorScheme.secondary,
-                  Theme.of(context).colorScheme.onSurface,
-                  Theme.of(context).colorScheme.onBackground),
-              buildButton(
-                  '2',
-                  height,
-                  width,
-                  ref,
-                  Theme.of(context).scaffoldBackgroundColor,
-                  Theme.of(context).colorScheme.secondary,
-                  Theme.of(context).colorScheme.onSurface,
-                  Theme.of(context).colorScheme.onBackground),
-              buildButton(
-                  '3',
-                  height,
-                  width,
-                  ref,
-                  Theme.of(context).scaffoldBackgroundColor,
-                  Theme.of(context).colorScheme.secondary,
-                  Theme.of(context).colorScheme.onSurface,
-                  Theme.of(context).colorScheme.onBackground),
-              buildButton(
-                  '⌫',
-                  height,
-                  width,
-                  ref,
-                  Theme.of(context).colorScheme.background,
-                  const Color(0xFFFF7B7B),
-                  Theme.of(context).colorScheme.onSurface,
-                  Theme.of(context).colorScheme.onBackground),
-            ],
-          ),
-          Row(
-            children: <Widget>[
-              buildEnlargedButton(
+              buildRectangleButton(
                   '0',
                   height,
                   width,
@@ -235,7 +233,7 @@ class Buttons extends StatelessWidget {
                   Theme.of(context).colorScheme.secondary,
                   Theme.of(context).colorScheme.onSurface,
                   Theme.of(context).colorScheme.onBackground),
-              buildButton(
+              buildCircleButton(
                   '.',
                   height,
                   width,
@@ -244,7 +242,7 @@ class Buttons extends StatelessWidget {
                   Theme.of(context).colorScheme.secondary,
                   Theme.of(context).colorScheme.onSurface,
                   Theme.of(context).colorScheme.onBackground),
-              buildButton(
+              buildCircleButton(
                   '=',
                   height,
                   width,

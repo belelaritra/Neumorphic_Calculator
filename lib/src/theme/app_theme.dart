@@ -11,7 +11,7 @@ class AppTheme {
           secondary: const Color(0xFF4d4d6e), //using this button text
           secondaryVariant: const Color(0xFF4d4d6e),
           surface: const Color(
-              0xFF7777a9), //using this as equals to button background
+              0xFF8686b2), //using this as equals to button background
           background: const Color(0xFFF8C6C6), //using this as clear button
           error: const Color(0xFFff0000),
           onPrimary: const Color(0xFFDBDBF9),
@@ -26,12 +26,12 @@ class AppTheme {
   static final darkTheme = ThemeData(
       scaffoldBackgroundColor: const Color(0xFF121212),
       colorScheme: const ColorScheme(
-          primary: Color(0xFF1a1a26),
+          primary: Color(0xFF12121a),
           primaryVariant: Color(0xFF262636),
           secondary: Color(0xFFDBDBF9),
           secondaryVariant: Color(0xFFDBDBF9),
           surface: Color(0xFF30304e),
-          background: Color(0xFF8d6363),
+          background: Color(0xFF291d1d),
           error: Color(0xFFff0000),
           onPrimary: Color(0xFFDBDBF9),
           onSecondary: Color(0xFF262636),

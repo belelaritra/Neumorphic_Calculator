@@ -2,32 +2,31 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_vibrate/flutter_vibrate.dart';
 
-import '/common/box_shadow.dart';
-import '../main.dart';
-import '../utils/button_press.dart';
+import '../../../main.dart';
+import '../../common/simple_mode/box_shadow.dart';
+import '../../utils/button_press.dart';
 
-Widget buildButton(
-  String buttonVal,
-  double height,
-  double width,
-  WidgetRef ref,
-  Color buttoncolor,
-  Color textcolor,
-  Color upperShadow,
-  Color lowerShadow,
-) {
-  return Expanded(
-      child: Container(
+Widget buildRectangleButton(
+    String buttonVal,
+    double height,
+    double width,
+    WidgetRef ref,
+    Color buttoncolor,
+    Color textcolor,
+    Color upperShadow,
+    Color lowerShadow) {
+  return Container(
+    width: width * 0.45,
     margin: EdgeInsets.symmetric(
-        vertical: height * 0.005, horizontal: width * 0.02),
+        vertical: height * 0.005, horizontal: width * 0.03),
     decoration: BoxDecoration(
+      borderRadius: BorderRadius.circular(30.0),
       color: buttoncolor,
-      shape: BoxShape.circle,
       boxShadow: [boxShadow1(lowerShadow), boxShadow2(upperShadow)],
     ),
     child: MaterialButton(
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0)),
       splashColor: Colors.transparent,
-      highlightColor: Colors.transparent,
       padding: const EdgeInsets.all(24.0),
       child: Text(
         buttonVal,
@@ -44,5 +43,5 @@ Widget buildButton(
         buttonPress.buttonPressed(buttonVal, ref);
       },
     ),
-  ));
+  );
 }

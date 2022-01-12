@@ -5,14 +5,14 @@
 // gestures. You can also use WidgetTester to find child widgets in the widget
 // tree, read text, and verify that the values of widget properties are correct.
 
-import 'package:calculator/app.dart';
+import 'package:calculator/src/calculator_mode_views/simple_mode.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
     // Build our app and trigger a frame.
-    await tester.pumpWidget(const CalculatorApp());
+    await tester.pumpWidget(const SimpleMode());
 
     // Verify that our counter starts at 0.
     expect(find.text('0'), findsOneWidget);
