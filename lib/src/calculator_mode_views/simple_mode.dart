@@ -41,10 +41,15 @@ class SimpleMode extends ConsumerWidget {
                       final history = ref.watch(historyProvider.state).state;
                       return Align(
                         alignment: Alignment.topRight,
-                        child: SelectableText(
-                          history,
-                          style: const TextStyle(
-                              fontSize: 20, color: Color(0xFF7F7FA5)),
+                        child: SingleChildScrollView(
+                          reverse: true,
+                          scrollDirection: Axis.horizontal,
+                          child: SelectableText(
+                            history,
+                            maxLines: 1,
+                            style: const TextStyle(
+                                fontSize: 25, color: Color(0xFF7F7FA5)),
+                          ),
                         ),
                       );
                     },
@@ -56,13 +61,19 @@ class SimpleMode extends ConsumerWidget {
                       return Expanded(
                         child: Container(
                           alignment: Alignment.bottomRight,
-                          child: SelectableText(
-                            expression,
-                            textAlign: TextAlign.end,
-                            style: TextStyle(
-                                fontSize: 28,
-                                fontWeight: FontWeight.bold,
-                                color: Theme.of(context).colorScheme.secondary),
+                          child: SingleChildScrollView(
+                            reverse: true,
+                            scrollDirection: Axis.horizontal,
+                            child: SelectableText(
+                              expression,
+                              maxLines: 1,
+                              textAlign: TextAlign.end,
+                              style: TextStyle(
+                                  fontSize: 42,
+                                  fontWeight: FontWeight.bold,
+                                  color:
+                                      Theme.of(context).colorScheme.secondary),
+                            ),
                           ),
                         ),
                       );
