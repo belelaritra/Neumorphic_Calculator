@@ -16,21 +16,18 @@ Widget buildRectangleButton(
     Color upperShadow,
     Color lowerShadow) {
   return Container(
-    width: width * 0.22,
+    width: width * 0.2,
     margin: EdgeInsets.only(
-        top: height * 0.0055,
-        bottom: height * 0.0055,
-        right: width * 0.02),
+        top: height * 0.0055, bottom: height * 0.0055, right: width * 0.02),
     decoration: BoxDecoration(
       borderRadius: BorderRadius.circular(30.0),
       color: buttoncolor,
       boxShadow: [boxShadow1(lowerShadow), boxShadow2(upperShadow)],
     ),
     child: MaterialButton(
-      shape:
-          RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0)),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0)),
       splashColor: Colors.transparent,
-      padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 15.0),
+      padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 15.0),
       child: Text(
         buttonVal,
         style: TextStyle(

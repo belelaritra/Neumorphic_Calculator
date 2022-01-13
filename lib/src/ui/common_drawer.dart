@@ -69,29 +69,34 @@ class _CommonDrawerState extends ConsumerState<CommonDrawer> {
                     ),
                     Consumer(
                       builder: (context, ref, _) {
-                        return Checkbox(
-                          shape: const CircleBorder(),
-                          checkColor: Theme.of(context).colorScheme.secondary,
-                          activeColor:
-                              Theme.of(context).scaffoldBackgroundColor,
-                          side: BorderSide(
-                            color: Theme.of(context).colorScheme.secondary,
+                        return Padding(
+                          padding: EdgeInsets.only(right: width * 0.05),
+                          child: Checkbox(
+                            shape: const CircleBorder(),
+                            checkColor: Theme.of(context).colorScheme.secondary,
+                            activeColor:
+                                Theme.of(context).scaffoldBackgroundColor,
+                            side: BorderSide(
+                              color: Theme.of(context).colorScheme.secondary,
+                            ),
+                            value: calculatorMode.getCalculatorMode ==
+                                CalculatorModeEnum.advanced,
+                            onChanged: (bool? value) async {
+                              if (ref
+                                  .watch(hapticFeedbackProvider.state)
+                                  .state) {
+                                Vibrate.feedback(FeedbackType.success);
+                              }
+                              Navigator.of(context).pop();
+                              await _prefs.setInt(
+                                  'calculator_mode', value! ? 1 : 0);
+                              calculatorMode.toggleMode(
+                                  calculatorMode.getCalculatorMode ==
+                                          CalculatorModeEnum.advanced
+                                      ? CalculatorModeEnum.simple
+                                      : CalculatorModeEnum.advanced);
+                            },
                           ),
-                          value: calculatorMode.getCalculatorMode ==
-                              CalculatorModeEnum.advanced,
-                          onChanged: (bool? value) async {
-                            if (ref.watch(hapticFeedbackProvider.state).state) {
-                              Vibrate.feedback(FeedbackType.success);
-                            }
-                            Navigator.of(context).pop();
-                            await _prefs.setInt(
-                                'calculator_mode', value! ? 1 : 0);
-                            calculatorMode.toggleMode(
-                                calculatorMode.getCalculatorMode ==
-                                        CalculatorModeEnum.advanced
-                                    ? CalculatorModeEnum.simple
-                                    : CalculatorModeEnum.advanced);
-                          },
                         );
                       },
                     ),
@@ -137,27 +142,30 @@ class _CommonDrawerState extends ConsumerState<CommonDrawer> {
                                       Theme.of(context).colorScheme.secondary)),
                           Consumer(
                             builder: (context, ref, _) {
-                              return Checkbox(
-                                shape: const CircleBorder(),
-                                checkColor:
-                                    Theme.of(context).colorScheme.secondary,
-                                activeColor:
-                                    Theme.of(context).scaffoldBackgroundColor,
-                                side: BorderSide(
-                                  color:
+                              return Padding(
+                                padding: EdgeInsets.only(right: width * 0.05),
+                                child: Checkbox(
+                                  shape: const CircleBorder(),
+                                  checkColor:
                                       Theme.of(context).colorScheme.secondary,
-                                ),
-                                value: ref
-                                    .watch(hapticFeedbackProvider.state)
-                                    .state,
-                                onChanged: (bool? value) async {
-                                  Navigator.of(context).pop();
-                                  await _prefs.setBool(
-                                      'haptic_feedback', value);
-                                  ref
+                                  activeColor:
+                                      Theme.of(context).scaffoldBackgroundColor,
+                                  side: BorderSide(
+                                    color:
+                                        Theme.of(context).colorScheme.secondary,
+                                  ),
+                                  value: ref
                                       .watch(hapticFeedbackProvider.state)
-                                      .state = value!;
-                                },
+                                      .state,
+                                  onChanged: (bool? value) async {
+                                    Navigator.of(context).pop();
+                                    await _prefs.setBool(
+                                        'haptic_feedback', value);
+                                    ref
+                                        .watch(hapticFeedbackProvider.state)
+                                        .state = value!;
+                                  },
+                                ),
                               );
                             },
                           )

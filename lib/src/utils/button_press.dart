@@ -16,7 +16,6 @@ class ButtonPress {
   String _history = '';
   String _expression = '';
   Variable pi = Variable('π');
-  Variable euler = Variable('e');
 
   final Parser p = Parser();
   late Expression exp;
@@ -32,44 +31,63 @@ class ButtonPress {
   final logLn = RegExp(r'(log|ln)$');
   final bracketEnd = RegExp(r'\)$');
 
-  int bracketCount = 0;
+  //used while backspacing; erases the full function rather than erasing by 1 character
+  final moreThanOneCharExpr = RegExp(r'(log\(|sin\(|cos\(|tan\()$');
+
+  int bracketCount = 0; //keeps track of currently open brackets
+  int sinTanCosBracketCount =
+      0; //keeps track of open trigonometric function brackets
 
   buttonPressed(String btnVal, WidgetRef ref) {
     try {
+      //clear all
       if (btnVal == 'C') {
         _history = _expression;
         _expression = '';
         bracketCount = 0;
         ref.read(expressionProvider.state).state = _expression;
         ref.read(historyProvider.state).state = _history;
-      } else if (btnVal == '<-') {
+      }
+      //backspace
+      else if (btnVal == '<-') {
         if (_expression.isNotEmpty) {
-          if (_expression[_expression.length - 1] == ')') {
-            bracketCount++;
-          } else if (_expression[_expression.length - 1] == '(') {
+          if (moreThanOneCharExpr.hasMatch(_expression)) {
+            _expression = _expression.substring(0, _expression.length - 4);
             bracketCount--;
+          } else if (_expression.endsWith('ln(')) {
+            _expression = _expression.substring(0, _expression.length - 3);
+            bracketCount--;
+          } else {
+            if (_expression.endsWith(')')) {
+              bracketCount++;
+            } else if (_expression.endsWith('(')) {
+              bracketCount--;
+            }
+            _expression = _expression.substring(0, _expression.length - 1);
           }
-          _expression = _expression.substring(0, _expression.length - 1);
           ref.read(expressionProvider.state).state = _expression;
         }
-      } else if (btnVal == '=') {
-        if (bracketCount > 0) {
+      }
+      //equals to
+      else if (btnVal == '=') {
+        if (bracketCount > 0 || sinTanCosBracketCount > 0) {
           for (int i = 0; i < bracketCount; i++) {
             _expression += ')';
           }
-          ref.read(expressionProvider.state).state = _expression;
+          bracketCount = 0;
         }
         ref.read(historyProvider.state).state = _expression;
         _expression = _expression.replaceAll('e', '2.718281828459045');
         _expression = _expression.replaceAll('log(', 'log(10, ');
-        exp = p.parse(_expression);
+        exp = p.parse(_expression, ref.watch(radianProvider.state).state);
         _expression = exp.evaluate(EvaluationType.REAL, cm).toString();
-
         _expression = _expression.endsWith('.0')
             ? _expression.substring(0, _expression.length - 2)
             : _expression;
         ref.read(expressionProvider.state).state = _expression;
-      } else if (btnVal == '±') {
+      }
+      //plus-minus operator
+      else if (btnVal == '±') {
         if (_expression.isNotEmpty) {
           if (plusMinus.hasMatch(_expression)) {
             _expression = _expression.substring(1);
@@ -78,18 +96,31 @@ class ButtonPress {
           }
           ref.read(expressionProvider.state).state = _expression;
         }
-      } else if (btnVal == 'π' || btnVal == 'e') {
+      }
+      //pi or euler's no.
+      else if (btnVal == 'π' || btnVal == 'e') {
         if (numbersEulerPi.hasMatch(_expression)) {
           _expression = '$_expression*$btnVal';
         } else {
           _expression += btnVal;
         }
         ref.read(expressionProvider.state).state = _expression;
-      } else if (btnVal == 'EXP') {
-        _expression = '$_expression*10^(';
+      }
+      //x10^(number)
+      else if (btnVal == 'EXP') {
+        if (_expression.isEmpty) {
+          _expression = '${_expression}10^(';
+        } else if (fiveOperations.hasMatch(_expression) ||
+            _expression.endsWith('(')) {
+          _expression = '${_expression}10^(';
+        } else {
+          _expression = '$_expression*10^(';
+        }
         bracketCount++;
         ref.read(expressionProvider.state).state = _expression;
-      } else if (btnVal == '%') {
+      }
+      //percentage
+      else if (btnVal == '%') {
         if (_expression.isNotEmpty) {
           _expression = '$_expression%';
           ref.read(expressionProvider.state).state = _expression;
@@ -167,7 +198,9 @@ class ButtonPress {
             ref.read(expressionProvider.state).state = _expression;
           }
         }
-      } else if (logLn.hasMatch(btnVal)) {
+      }
+      //log or ln
+      else if (logLn.hasMatch(btnVal)) {
         if (numbersEulerPi.hasMatch(_expression) ||
             bracketEnd.hasMatch(_expression)) {
           _expression = '$_expression*$btnVal(';
@@ -187,11 +220,15 @@ class ButtonPress {
           _expression = '$_expression$btnVal';
           ref.read(expressionProvider.state).state = _expression;
         }
-      } else if (btnVal == '!' && _expression.isEmpty) {
+      }
+      //factorial
+      else if (btnVal == '!' && _expression.isEmpty) {
         if (ref.watch(hapticFeedbackProvider.state).state) {
           Vibrate.feedback(FeedbackType.error);
         }
-      } else if (sinTanCos.hasMatch(btnVal)) {
+      }
+      //trigonometry -> sin, cos, tan
+      else if (sinTanCos.hasMatch(btnVal)) {
         if (numbersEulerPi.hasMatch(_expression) ||
             bracketEnd.hasMatch(_expression)) {
           _expression = '$_expression*$btnVal(';
@@ -201,7 +238,10 @@ class ButtonPress {
           bracketCount++;
         }
         ref.read(expressionProvider.state).state = _expression;
-      } else if (numbers.hasMatch(btnVal) && piEuler.hasMatch(_expression)) {
+      }
+      //last char in expression was either pi or euler's no.
+      //and the button value is a number
+      else if (numbers.hasMatch(btnVal) && piEuler.hasMatch(_expression)) {
         _expression = '$_expression*$btnVal';
         ref.read(expressionProvider.state).state = _expression;
       } else {
