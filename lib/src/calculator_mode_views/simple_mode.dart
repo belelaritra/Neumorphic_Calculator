@@ -18,8 +18,8 @@ class SimpleMode extends ConsumerWidget {
         Expanded(
           child: Padding(
             padding: EdgeInsets.only(
-                top: height < 700 ? height * 0.005 : height * 0.01,
-                bottom: height < 700 ? height * 0.02 : height * 0.03,
+                top: height < 700 ? height * 0.02 : height * 0.03,
+                bottom: height < 700 ? height * 0.03 : height * 0.04,
                 left: width < 390 ? width * 0.035 : width * 0.06,
                 right: width < 390 ? width * 0.035 : width * 0.06),
             child: Container(

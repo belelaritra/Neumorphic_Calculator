@@ -11,6 +11,7 @@ import 'src/theme/theme_controller.dart';
 final expressionProvider = StateProvider((ref) => '');
 final historyProvider = StateProvider((ref) => '');
 final hapticFeedbackProvider = StateProvider((ref) => true);
+final radianProvider = StateProvider((ref) => true);
 
 ThemeController themeController = ThemeController();
 CalculatorMode calculatorMode = CalculatorMode();
@@ -33,18 +34,18 @@ class MyApp extends ConsumerStatefulWidget {
 }
 
 class _MyAppState extends ConsumerState<MyApp> {
-  bool hapticFeedback = true;
-  int themeMode = 0;
+  int themeMode = 0; //0 is system theme, 1 is light theme, 2 is dark theme
 
   Future<void> checkState() async {
     await SharedPreferences.getInstance().then((value) {
-      hapticFeedback = value.getBool('haptic_feedback') ?? true;
+      ref.read(hapticFeedbackProvider.state).state =
+          value.getBool('haptic_feedback') ?? true;
       themeMode = value.getInt('theme_mode') ?? 0;
       if (themeMode != 0) {
         themeController
             .changeTheme(themeMode == 1 ? ThemeMode.light : ThemeMode.dark);
       }
-      ref.read(hapticFeedbackProvider.state).state = hapticFeedback;
+      ref.read(radianProvider.state).state = value.getBool('is_radian') ?? true;
     });
   }
 

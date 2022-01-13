@@ -20,6 +20,7 @@ class _CalculatorModeViewRebuilderState
     extends ConsumerState<CalculatorModeViewRebuilder> {
   late Widget body;
   late int calculatorModeView;
+  late final SharedPreferences _prefs;
 
   Future<void> checkState() async {
     await SharedPreferences.getInstance().then((value) {
@@ -27,6 +28,7 @@ class _CalculatorModeViewRebuilderState
       if (calculatorModeView != 0) {
         calculatorMode.toggleMode(CalculatorModeEnum.advanced);
       }
+      _prefs = value;
     });
   }
 
@@ -62,6 +64,31 @@ class _CalculatorModeViewRebuilderState
                 style: TextStyle(
                     fontSize: 20,
                     color: Theme.of(context).colorScheme.secondary)),
+            actions: [
+              Consumer(
+                builder: (context, ref, _) {
+                  return MaterialButton(
+                      splashColor: Colors.transparent,
+                      highlightColor: Colors.transparent,
+                      onPressed: () async {
+                        await _prefs.setBool('is_radian',
+                            !ref.watch(radianProvider.state).state);
+                        ref.watch(radianProvider.state).state =
+                            !ref.watch(radianProvider.state).state;
+                      },
+                      child: Text(
+                          calculatorMode.getCalculatorMode !=
+                                  CalculatorModeEnum.simple
+                              ? (ref.watch(radianProvider.state).state
+                                  ? 'RAD'
+                                  : 'DEG')
+                              : '',
+                          style: TextStyle(
+                              fontSize: 15,
+                              color: Theme.of(context).colorScheme.secondary)));
+                },
+              ),
+            ],
           ),
           body: body),
     );
