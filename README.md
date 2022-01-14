@@ -11,8 +11,8 @@ A Soft UI Calculator using Flutter.
 <p float="left">
 
 ### Light Mode
-  <img src=".github/simple-light.png" height="400" />&nbsp;<img src=".github/advanced-light.png" height="400" />&nbsp;<img src=".github/drawer-light.png" height="400" />
+  <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/simple-light.png" height="400" />&nbsp;<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/advanced-light.png" height="400" />&nbsp;<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/drawer-light.png" height="400" />
 
 ### Dark Mode
-  <img src=".github/simple-dark.png" height="400" />&nbsp;<img src=".github/advanced-dark.png" height="400" />&nbsp;<img src=".github/drawer-dark.png" height="400" />
+  <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/simple-dark.png" height="400" />&nbsp;<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/advanced-dark.png" height="400" />&nbsp;<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/drawer-dark.png" height="400" />
 </p>

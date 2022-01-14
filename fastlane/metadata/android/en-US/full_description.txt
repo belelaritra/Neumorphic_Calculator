@@ -1,0 +1,3 @@
+Supports light, dark and system default theme.
+Has simple and advnced modes.
+Comes with Haptic Feedbacks.
