@@ -12,6 +12,7 @@ final expressionProvider = StateProvider((ref) => '');
 final historyProvider = StateProvider((ref) => '');
 final hapticFeedbackProvider = StateProvider((ref) => true);
 final radianProvider = StateProvider((ref) => true);
+final calculatorDisplayDirectionProvider = StateProvider((ref) => true);
 
 ThemeController themeController = ThemeController();
 CalculatorMode calculatorMode = CalculatorMode();

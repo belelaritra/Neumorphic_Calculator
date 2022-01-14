@@ -111,8 +111,8 @@ packages:
     dependency: "direct main"
     description:
       path: "."
-      ref: tan-fix
-      resolved-ref: bd7b81f792946bfd4a746240df9ed4161e926969
+      ref: add-degree-hack
+      resolved-ref: c232311108e5a394ccc8596a458d1745076a6b96
       url: "https://github.com/danger-ahead/math-expressions.git"
     source: git
     version: "2.3.0"

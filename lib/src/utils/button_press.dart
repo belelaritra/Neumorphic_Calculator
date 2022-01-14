@@ -40,6 +40,9 @@ class ButtonPress {
 
   buttonPressed(String btnVal, WidgetRef ref) {
     try {
+      if (!ref.watch(calculatorDisplayDirectionProvider.state).state) {
+        ref.watch(calculatorDisplayDirectionProvider.state).state = true;
+      }
       //clear all
       if (btnVal == 'C') {
         _history = _expression;
@@ -81,10 +84,15 @@ class ButtonPress {
         _expression = _expression.replaceAll('log(', 'log(10, ');
         exp = p.parse(_expression, ref.watch(radianProvider.state).state);
         _expression = exp.evaluate(EvaluationType.REAL, cm).toString();
-        _expression = _expression.endsWith('.0')
-            ? _expression.substring(0, _expression.length - 2)
-            : _expression;
-        ref.read(expressionProvider.state).state = _expression;
+        if (_expression == 'NaN') {
+          throw Exception('received **NaN**');
+        } else {
+          _expression = _expression.endsWith('.0')
+              ? _expression.substring(0, _expression.length - 2)
+              : _expression;
+          ref.watch(calculatorDisplayDirectionProvider.state).state = false;
+          ref.read(expressionProvider.state).state = _expression;
+        }
       }
       //plus-minus operator
       else if (btnVal == '±') {
@@ -278,8 +286,9 @@ class ButtonPress {
         Vibrate.feedback(FeedbackType.error);
       }
       ref.read(expressionProvider.state).state = 'ERROR';
-      Timer(const Duration(seconds: 1),
-          () => ref.read(expressionProvider.state).state = _expression);
+      Timer(const Duration(seconds: 1), () {
+        ref.read(expressionProvider.state).state = '';
+      });
     }
   }
 }

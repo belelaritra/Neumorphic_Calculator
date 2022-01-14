@@ -42,7 +42,9 @@ class SimpleMode extends ConsumerWidget {
                       return Align(
                         alignment: Alignment.topRight,
                         child: SingleChildScrollView(
-                          reverse: true,
+                          reverse: ref
+                              .watch(calculatorDisplayDirectionProvider.state)
+                              .state,
                           scrollDirection: Axis.horizontal,
                           child: SelectableText(
                             history,
@@ -62,7 +64,9 @@ class SimpleMode extends ConsumerWidget {
                         child: Container(
                           alignment: Alignment.bottomRight,
                           child: SingleChildScrollView(
-                            reverse: true,
+                            reverse: ref
+                                .watch(calculatorDisplayDirectionProvider.state)
+                                .state,
                             scrollDirection: Axis.horizontal,
                             child: SelectableText(
                               expression,

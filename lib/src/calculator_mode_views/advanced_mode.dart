@@ -42,7 +42,9 @@ class AdvancedMode extends ConsumerWidget {
                       return Align(
                         alignment: Alignment.topRight,
                         child: SingleChildScrollView(
-                          reverse: true,
+                          reverse: ref
+                              .watch(calculatorDisplayDirectionProvider.state)
+                              .state,
                           scrollDirection: Axis.horizontal,
                           child: SelectableText(
                             history,
@@ -59,22 +61,21 @@ class AdvancedMode extends ConsumerWidget {
                     builder: (context, ref, _) {
                       final expression =
                           ref.watch(expressionProvider.state).state;
-                      return Expanded(
-                        child: Container(
-                          alignment: Alignment.bottomRight,
-                          child: SingleChildScrollView(
-                            reverse: true,
-                            scrollDirection: Axis.horizontal,
-                            child: SelectableText(
-                              expression,
-                              maxLines: 1,
-                              textAlign: TextAlign.end,
-                              style: TextStyle(
-                                  fontSize: 42,
-                                  fontWeight: FontWeight.bold,
-                                  color:
-                                      Theme.of(context).colorScheme.secondary),
-                            ),
+                      return Container(
+                        alignment: Alignment.bottomRight,
+                        child: SingleChildScrollView(
+                          reverse: ref
+                              .watch(calculatorDisplayDirectionProvider.state)
+                              .state,
+                          scrollDirection: Axis.horizontal,
+                          child: SelectableText(
+                            expression,
+                            maxLines: 1,
+                            textAlign: TextAlign.end,
+                            style: TextStyle(
+                                fontSize: 42,
+                                fontWeight: FontWeight.bold,
+                                color: Theme.of(context).colorScheme.secondary),
                           ),
                         ),
                       );
