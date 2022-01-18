@@ -2,6 +2,10 @@
 
 A Soft UI Calculator using Flutter.
 
+[<img src="https://fdroid.gitlab.io/artwork/badge/get-it-on.png"
+     alt="Get it on F-Droid"
+     height="100">](https://f-droid.org/packages/com.neumorphic.calculator/)
+
 ## Modes:
 - [x] Simple
 - [x] Advanced (**Currently, only trigonometric functions with radians is stable.** Degree operations have been implemented using a *non-tested* [fork](https://github.com/danger-ahead/math-expressions/tree/add-degree-hack) of the official [math_expressions](https://github.com/fkleon/math-expressions) library.)

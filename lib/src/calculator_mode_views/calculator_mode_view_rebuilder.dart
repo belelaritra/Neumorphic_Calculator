@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -60,6 +61,29 @@ class _CalculatorModeViewRebuilderState
             foregroundColor: Theme.of(context).colorScheme.secondary,
             backgroundColor: Theme.of(context).scaffoldBackgroundColor,
             elevation: 0,
+            leading: Builder(builder: (context) {
+              return Padding(
+                padding: const EdgeInsets.symmetric(vertical: 8.0),
+                child: NeumorphicButton(
+                  onPressed: () {
+                    Scaffold.of(context).openDrawer();
+                  },
+                  style: NeumorphicStyle(
+                    boxShape:
+                        NeumorphicBoxShape.roundRect(BorderRadius.circular(10)),
+                    color: Theme.of(context).scaffoldBackgroundColor,
+                    shadowDarkColor: Theme.of(context).colorScheme.onBackground,
+                    shadowLightColor: Theme.of(context).colorScheme.onSurface,
+                  ),
+                  child: Center(
+                    child: Icon(
+                      Icons.menu,
+                      color: Theme.of(context).colorScheme.secondary,
+                    ),
+                  ),
+                ),
+              );
+            }),
             title: Text('Calculator',
                 style: TextStyle(
                     fontSize: 20,
@@ -67,27 +91,56 @@ class _CalculatorModeViewRebuilderState
             actions: [
               Consumer(
                 builder: (context, ref, _) {
-                  return MaterialButton(
-                      splashColor: Colors.transparent,
-                      highlightColor: Colors.transparent,
-                      onPressed: () async {
-                        await _prefs.setBool('is_radian',
-                            !ref.watch(radianProvider.state).state);
-                        ref.watch(radianProvider.state).state =
-                            !ref.watch(radianProvider.state).state;
-                      },
-                      child: Text(
-                          calculatorMode.getCalculatorMode !=
-                                  CalculatorModeEnum.simple
-                              ? (ref.watch(radianProvider.state).state
-                                  ? 'RAD'
-                                  : 'DEG')
-                              : '',
-                          style: TextStyle(
-                              fontSize: 15,
-                              color: Theme.of(context).colorScheme.secondary)));
+                  return Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 8.0),
+                    child: calculatorMode.getCalculatorMode !=
+                            CalculatorModeEnum.simple
+                        ? NeumorphicButton(
+                            style: NeumorphicStyle(
+                              color: Theme.of(context).scaffoldBackgroundColor,
+                              shadowDarkColor:
+                                  Theme.of(context).colorScheme.onBackground,
+                              shadowLightColor:
+                                  Theme.of(context).colorScheme.onSurface,
+                              boxShape: NeumorphicBoxShape.roundRect(
+                                  BorderRadius.circular(10)),
+                            ),
+                            onPressed: () async {
+                              await _prefs.setBool('is_radian',
+                                  !ref.watch(radianProvider.state).state);
+                              ref.watch(radianProvider.state).state =
+                                  !ref.watch(radianProvider.state).state;
+                            },
+                            child: Center(
+                              child: Text(
+                                  ref.watch(radianProvider.state).state
+                                      ? 'RAD'
+                                      : 'DEG',
+                                  style: TextStyle(
+                                      fontSize: 15,
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .secondary)),
+                            ))
+                        : null,
+                  );
                 },
               ),
+              Padding(
+                padding:
+                    const EdgeInsets.only(top: 8.0, left: 8.0, bottom: 8.0),
+                child: NeumorphicButton(
+                  style: NeumorphicStyle(
+                    color: Theme.of(context).scaffoldBackgroundColor,
+                    shadowDarkColor: Theme.of(context).colorScheme.onBackground,
+                    shadowLightColor: Theme.of(context).colorScheme.onSurface,
+                    boxShape:
+                        NeumorphicBoxShape.roundRect(BorderRadius.circular(10)),
+                  ),
+                  onPressed: () {},
+                  child: const Center(child: Icon(Icons.history_toggle_off)),
+                ),
+              )
             ],
           ),
           body: body),

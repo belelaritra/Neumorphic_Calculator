@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../main.dart';
-import '../common/advanced_mode/box_shadow.dart';
 import '../ui/advanced_mode/buttons.dart';
 
 class AdvancedMode extends ConsumerWidget {
@@ -18,20 +18,21 @@ class AdvancedMode extends ConsumerWidget {
         Expanded(
           child: Padding(
             padding: EdgeInsets.only(
-                top: height < 700 ? height * 0.007 : height * 0.03,
-                bottom: height < 700 ? height * 0.04 : height * 0.03,
-                left: width < 390 ? width * 0.035 : width * 0.06,
-                right: width < 390 ? width * 0.035 : width * 0.06),
-            child: Container(
+                top: height * 0.003,
+                bottom: height * 0.015,
+                left: width * 0.035,
+                right: width * 0.035),
+            child: Neumorphic(
               padding: EdgeInsets.symmetric(
-                  horizontal: width * 0.025, vertical: height * 0.0015),
-              decoration: BoxDecoration(
+                  vertical: height * 0.002, horizontal: width * 0.03),
+              style: NeumorphicStyle(
+                depth: -5,
                 color: Theme.of(context).scaffoldBackgroundColor,
-                boxShadow: [
-                  boxShadow1(Theme.of(context).colorScheme.onBackground),
-                  boxShadow2(Theme.of(context).colorScheme.onSurface)
-                ],
-                borderRadius: BorderRadius.circular(25),
+                shadowDarkColorEmboss:
+                    Theme.of(context).colorScheme.onBackground,
+                shadowLightColorEmboss: Theme.of(context).colorScheme.onSurface,
+                boxShape:
+                    NeumorphicBoxShape.roundRect(BorderRadius.circular(25)),
               ),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,

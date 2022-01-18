@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_vibrate/flutter_vibrate.dart';
 
 import '../../../main.dart';
-import '../../common/simple_mode/box_shadow.dart';
 import '../../utils/button_press.dart';
 
 Widget buildCircleButton(
@@ -17,18 +17,17 @@ Widget buildCircleButton(
   Color lowerShadow,
 ) {
   return Expanded(
-      child: Container(
+      child: NeumorphicButton(
     margin: EdgeInsets.symmetric(
         vertical: height * 0.005, horizontal: width * 0.02),
-    decoration: BoxDecoration(
+    style: NeumorphicStyle(
       color: buttoncolor,
-      shape: BoxShape.circle,
-      boxShadow: [boxShadow1(lowerShadow), boxShadow2(upperShadow)],
+      shadowDarkColor: lowerShadow,
+      shadowLightColor: upperShadow,
+      boxShape: const NeumorphicBoxShape.circle(),
     ),
-    child: MaterialButton(
-      shape: const CircleBorder(),
-      splashColor: Colors.transparent,
-      padding: const EdgeInsets.all(24.0),
+    padding: const EdgeInsets.all(24.0),
+    child: Center(
       child: Text(
         buttonVal,
         style: TextStyle(
@@ -37,12 +36,12 @@ Widget buildCircleButton(
           color: textcolor.withOpacity(0.7),
         ),
       ),
-      onPressed: () {
-        if (ref.watch(hapticFeedbackProvider.state).state) {
-          Vibrate.feedback(FeedbackType.success);
-        }
-        buttonPress.buttonPressed(buttonVal, ref);
-      },
     ),
+    onPressed: () {
+      if (ref.watch(hapticFeedbackProvider.state).state) {
+        Vibrate.feedback(FeedbackType.success);
+      }
+      buttonPress.buttonPressed(buttonVal, ref);
+    },
   ));
 }

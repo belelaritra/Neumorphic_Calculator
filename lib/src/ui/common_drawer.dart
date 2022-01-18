@@ -41,7 +41,7 @@ class _CommonDrawerState extends ConsumerState<CommonDrawer> {
             Padding(
               padding: EdgeInsets.only(top: height * 0.018),
               child: Container(
-                height: height * 0.08,
+                height: height * 0.07,
                 padding: EdgeInsets.only(left: width * 0.05),
                 decoration: BoxDecoration(
                     color: Theme.of(context)
@@ -120,9 +120,9 @@ class _CommonDrawerState extends ConsumerState<CommonDrawer> {
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.only(top: height * 0.1),
+                    padding: EdgeInsets.only(top: height * 0.018),
                     child: Container(
-                      height: height * 0.08,
+                      height: height * 0.07,
                       padding: EdgeInsets.only(left: width * 0.05),
                       decoration: BoxDecoration(
                           color: Theme.of(context)
@@ -176,7 +176,7 @@ class _CommonDrawerState extends ConsumerState<CommonDrawer> {
                   Padding(
                     padding: EdgeInsets.only(top: height * 0.018),
                     child: Container(
-                      height: height * 0.08,
+                      height: height * 0.07,
                       padding: EdgeInsets.only(
                           left: width * 0.05, right: width * 0.05),
                       decoration: BoxDecoration(
@@ -307,7 +307,7 @@ class _CommonDrawerState extends ConsumerState<CommonDrawer> {
                   Padding(
                     padding: EdgeInsets.only(top: height * 0.018),
                     child: Container(
-                      height: height * 0.08,
+                      height: height * 0.07,
                       padding: EdgeInsets.only(
                           left: width * 0.05, right: width * 0.05),
                       decoration: BoxDecoration(
