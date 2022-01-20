@@ -4,7 +4,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../main.dart';
+import '../ui/bottom_sheet.dart' as bottom_sheet;
 import '../ui/common_drawer.dart';
+import '../utils/history.dart';
 import 'advanced_mode.dart';
 import 'calculator_mode.dart';
 import 'simple_mode.dart';
@@ -61,29 +63,6 @@ class _CalculatorModeViewRebuilderState
             foregroundColor: Theme.of(context).colorScheme.secondary,
             backgroundColor: Theme.of(context).scaffoldBackgroundColor,
             elevation: 0,
-            leading: Builder(builder: (context) {
-              return Padding(
-                padding: const EdgeInsets.symmetric(vertical: 8.0),
-                child: NeumorphicButton(
-                  onPressed: () {
-                    Scaffold.of(context).openDrawer();
-                  },
-                  style: NeumorphicStyle(
-                    boxShape:
-                        NeumorphicBoxShape.roundRect(BorderRadius.circular(10)),
-                    color: Theme.of(context).scaffoldBackgroundColor,
-                    shadowDarkColor: Theme.of(context).colorScheme.onBackground,
-                    shadowLightColor: Theme.of(context).colorScheme.onSurface,
-                  ),
-                  child: Center(
-                    child: Icon(
-                      Icons.menu,
-                      color: Theme.of(context).colorScheme.secondary,
-                    ),
-                  ),
-                ),
-              );
-            }),
             title: Text('Calculator',
                 style: TextStyle(
                     fontSize: 20,
@@ -127,8 +106,7 @@ class _CalculatorModeViewRebuilderState
                 },
               ),
               Padding(
-                padding:
-                    const EdgeInsets.only(top: 8.0, left: 8.0, bottom: 8.0),
+                padding: const EdgeInsets.all(8.0),
                 child: NeumorphicButton(
                   style: NeumorphicStyle(
                     color: Theme.of(context).scaffoldBackgroundColor,
@@ -137,7 +115,21 @@ class _CalculatorModeViewRebuilderState
                     boxShape:
                         NeumorphicBoxShape.roundRect(BorderRadius.circular(10)),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    showModalBottomSheet(
+                        shape: const RoundedRectangleBorder(
+                          borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(25),
+                            topRight: Radius.circular(25),
+                          ),
+                        ),
+                        backgroundColor:
+                            Theme.of(context).scaffoldBackgroundColor,
+                        context: context,
+                        builder: (context) {
+                          return const bottom_sheet.BottomSheet();
+                        });
+                  },
                   child: const Center(child: Icon(Icons.history_toggle_off)),
                 ),
               )

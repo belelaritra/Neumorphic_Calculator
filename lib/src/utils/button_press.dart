@@ -114,6 +114,13 @@ class ButtonPress {
         }
         ref.read(expressionProvider.state).state = _expression;
       }
+      //decimal
+      else if (btnVal == '.') {
+        if (!_expression.endsWith('.')) {
+          _expression = '$_expression$btnVal';
+        }
+        ref.read(expressionProvider.state).state = _expression;
+      }
       //x10^(number)
       else if (btnVal == 'EXP') {
         if (_expression.isEmpty) {
