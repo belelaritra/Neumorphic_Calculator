@@ -8,14 +8,20 @@ import 'src/calculator_mode_views/calculator_mode_view_rebuilder.dart';
 import 'src/theme/app_theme.dart';
 import 'src/theme/theme_controller.dart';
 
-final expressionProvider = StateProvider((ref) => '');
-final historyProvider = StateProvider((ref) => '');
-final hapticFeedbackProvider = StateProvider((ref) => true);
-final radianProvider = StateProvider((ref) => true);
-final calculatorDisplayDirectionProvider = StateProvider((ref) => true);
+final expressionProvider =
+    StateProvider((ref) => ''); //stores the current expression
+final historyProvider =
+    StateProvider((ref) => ''); //stores the last evaluated expression
+final hapticFeedbackProvider =
+    StateProvider((ref) => true); //stores if haptic feedback is enabled
+final radianProvider = StateProvider(
+    (ref) => true); //stores if expressions are to be evaluated in radians
+final calculatorDisplayDirectionProvider = StateProvider((ref) =>
+    true); //stores if the expression has been calculated and has to be displayed from the beginning
 
-ThemeController themeController = ThemeController();
-CalculatorMode calculatorMode = CalculatorMode();
+ThemeController themeController = ThemeController(); //controls the app theme
+CalculatorMode calculatorMode =
+    CalculatorMode(); //controls the calculator mode (simple or advanced)
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();

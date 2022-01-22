@@ -15,8 +15,8 @@ A Soft UI Calculator using Flutter.
 <p float="left">
 
 ### Light Mode
-  <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/simple-light.png" height="400" />&nbsp;<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/advanced-light.png" height="400" />&nbsp;<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/drawer-light.png" height="400" />
+  <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/simple-light.png" height="400" />&nbsp;<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/advanced-light.png" height="400" />&nbsp;<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/history-light.png" height="400" />&nbsp;<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/drawer-light.png" height="400" />
 
 ### Dark Mode
-  <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/simple-dark.png" height="400" />&nbsp;<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/advanced-dark.png" height="400" />&nbsp;<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/drawer-dark.png" height="400" />
+  <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/simple-dark.png" height="400" />&nbsp;<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/advanced-dark.png" height="400" />&nbsp;<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/history-dark.png" height="400" />&nbsp;<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/drawer-dark.png" height="400" />
 </p>

@@ -1,0 +1,3 @@
+- Added history section
+- Added button press UI effects
+- Under the hood improvements

@@ -6,11 +6,11 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../../main.dart';
 import '../ui/bottom_sheet.dart' as bottom_sheet;
 import '../ui/common_drawer.dart';
-import '../utils/history.dart';
 import 'advanced_mode.dart';
 import 'calculator_mode.dart';
 import 'simple_mode.dart';
 
+//this widget class determines which screen to push (simple or advanced)
 class CalculatorModeViewRebuilder extends ConsumerStatefulWidget {
   const CalculatorModeViewRebuilder({Key? key}) : super(key: key);
 

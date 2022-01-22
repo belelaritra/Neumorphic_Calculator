@@ -212,23 +212,15 @@ class _CommonDrawerState extends ConsumerState<CommonDrawer> {
                                         .changeTheme(ThemeMode.system);
                                     await _prefs.setInt('theme_mode', 0);
                                   },
-                                  child: Container(
-                                      width: 24,
-                                      height: 24,
-                                      decoration: const BoxDecoration(
-                                        shape: BoxShape.circle,
-                                      ),
-                                      child: Icon(
-                                        Icons.screenshot,
-                                        color: themeController.currentTheme ==
-                                                ThemeMode.system
-                                            ? Theme.of(context)
-                                                .colorScheme
-                                                .secondary
-                                            : Theme.of(context)
-                                                .colorScheme
-                                                .surface,
-                                      )),
+                                  child: Icon(
+                                    Icons.screenshot,
+                                    color: themeController.currentTheme ==
+                                            ThemeMode.system
+                                        ? Theme.of(context)
+                                            .colorScheme
+                                            .secondary
+                                        : Theme.of(context).colorScheme.surface,
+                                  ),
                                 ),
                                 Padding(
                                   padding: EdgeInsets.symmetric(
@@ -247,23 +239,17 @@ class _CommonDrawerState extends ConsumerState<CommonDrawer> {
                                           .changeTheme(ThemeMode.light);
                                       await _prefs.setInt('theme_mode', 1);
                                     },
-                                    child: Container(
-                                        width: 24,
-                                        height: 24,
-                                        decoration: const BoxDecoration(
-                                          shape: BoxShape.circle,
-                                        ),
-                                        child: Icon(
-                                          Icons.wb_sunny,
-                                          color: themeController.currentTheme ==
-                                                  ThemeMode.light
-                                              ? Theme.of(context)
-                                                  .colorScheme
-                                                  .secondary
-                                              : Theme.of(context)
-                                                  .colorScheme
-                                                  .surface,
-                                        )),
+                                    child: Icon(
+                                      Icons.wb_sunny,
+                                      color: themeController.currentTheme ==
+                                              ThemeMode.light
+                                          ? Theme.of(context)
+                                              .colorScheme
+                                              .secondary
+                                          : Theme.of(context)
+                                              .colorScheme
+                                              .surface,
+                                    ),
                                   ),
                                 ),
                                 InkWell(
@@ -279,23 +265,15 @@ class _CommonDrawerState extends ConsumerState<CommonDrawer> {
                                     themeController.changeTheme(ThemeMode.dark);
                                     await _prefs.setInt('theme_mode', 2);
                                   },
-                                  child: Container(
-                                      width: 24,
-                                      height: 24,
-                                      decoration: const BoxDecoration(
-                                        shape: BoxShape.circle,
-                                      ),
-                                      child: Icon(
-                                        Icons.brightness_3,
-                                        color: themeController.currentTheme ==
-                                                ThemeMode.dark
-                                            ? Theme.of(context)
-                                                .colorScheme
-                                                .secondary
-                                            : Theme.of(context)
-                                                .colorScheme
-                                                .surface,
-                                      )),
+                                  child: Icon(
+                                    Icons.brightness_3,
+                                    color: themeController.currentTheme ==
+                                            ThemeMode.dark
+                                        ? Theme.of(context)
+                                            .colorScheme
+                                            .secondary
+                                        : Theme.of(context).colorScheme.surface,
+                                  ),
                                 ),
                               ]);
                             },

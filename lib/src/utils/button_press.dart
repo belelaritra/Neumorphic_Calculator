@@ -6,7 +6,9 @@ import 'package:flutter_vibrate/flutter_vibrate.dart';
 import 'package:math_expressions/math_expressions.dart';
 
 import '../../main.dart';
+import 'history.dart';
 
+//class responsible for all the buttons presses and calculations
 class ButtonPress {
   ButtonPress() {
     cm.bindVariable(pi, Number(math.pi));
@@ -35,8 +37,6 @@ class ButtonPress {
   final moreThanOneCharExpr = RegExp(r'(log\(|sin\(|cos\(|tan\()$');
 
   int bracketCount = 0; //keeps track of currently open brackets
-  int sinTanCosBracketCount =
-      0; //keeps track of open trigonometric function brackets
 
   buttonPressed(String btnVal, WidgetRef ref) {
     try {
@@ -73,7 +73,7 @@ class ButtonPress {
       }
       //equals to
       else if (btnVal == '=') {
-        if (bracketCount > 0 || sinTanCosBracketCount > 0) {
+        if (bracketCount > 0) {
           for (int i = 0; i < bracketCount; i++) {
             _expression += ')';
           }
@@ -92,6 +92,8 @@ class ButtonPress {
               : _expression;
           ref.watch(calculatorDisplayDirectionProvider.state).state = false;
           ref.read(expressionProvider.state).state = _expression;
+          HistoryDatabase.instance
+              .addHistory(ref.read(historyProvider.state).state, _expression);
         }
       }
       //plus-minus operator
@@ -294,7 +296,8 @@ class ButtonPress {
       }
       ref.read(expressionProvider.state).state = 'ERROR';
       Timer(const Duration(seconds: 1), () {
-        ref.read(expressionProvider.state).state = '';
+        _expression = '';
+        ref.read(expressionProvider.state).state = _expression;
       });
     }
   }
