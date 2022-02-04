@@ -114,7 +114,7 @@ class _CommonDrawerState extends ConsumerState<CommonDrawer> {
                   Padding(
                     padding: EdgeInsets.only(left: width * 0.05),
                     child: Text(
-                      'Settings',
+                      AppLocalizations.of(context)!.settings,
                       style: TextStyle(
                           fontSize: 24,
                           fontWeight: FontWeight.bold,

@@ -4,5 +4,7 @@
 	"hapticFeedback": "<TO-BE-DONE>",
 	"theme": "<TO-BE-DONE>",
 	"advanced": "<TO-BE-DONE>",
-	"history": "<TO-BE-DONE>"
+	"history": "<TO-BE-DONE>",
+	"historyEmpty": "<TO-BE-DONE>",
+	"settings": "<TO-BE-DONE>"
 }

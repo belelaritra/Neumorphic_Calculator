@@ -69,7 +69,7 @@ class _BottomSheetState extends ConsumerState<BottomSheet> {
                     final history = snapshot.data as List<Map<String, dynamic>>;
                     if (snapshot.data!.isEmpty) {
                       return Center(
-                        child: Text('Nothing to show :(',
+                        child: Text(AppLocalizations.of(context)!.historyEmpty,
                             style: TextStyle(
                                 fontSize: 20,
                                 color:

@@ -2,6 +2,12 @@
 
 A Soft UI Calculator using Flutter.
 
+![Downloads](https://img.shields.io/github/downloads/belelaritra/Neumorphic_Calculator/total)
+
+&nbsp;&nbsp;&nbsp;&nbsp;[<img src="https://img.shields.io/badge/GitHub-181717?logo=github&logoColor=white"
+     alt="Download from GitHub"
+     height="60">](https://github.com/belelaritra/Neumorphic_Calculator/releases)
+     
 [<img src="https://fdroid.gitlab.io/artwork/badge/get-it-on.png"
      alt="Get it on F-Droid"
      height="100">](https://f-droid.org/packages/com.neumorphic.calculator/)

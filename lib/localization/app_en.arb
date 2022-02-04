@@ -4,5 +4,7 @@
 	"hapticFeedback": "Haptic Feedback",
 	"theme": "Theme",
 	"advanced": "Advanced",
-	"history": "History"
+	"history": "History",
+	"historyEmpty": "Nothing to show :(",
+	"settings": "Settings"
 }
