@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+// ignore: depend_on_referenced_packages
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_vibrate/flutter_vibrate.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -60,7 +62,7 @@ class _CommonDrawerState extends ConsumerState<CommonDrawer> {
                           Icons.calculate_rounded,
                           color: Theme.of(context).colorScheme.secondary,
                         ),
-                        Text('      Advanced',
+                        Text('      ${AppLocalizations.of(context)!.advanced}',
                             style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 color:
@@ -135,7 +137,7 @@ class _CommonDrawerState extends ConsumerState<CommonDrawer> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text('Haptic Feedback',
+                          Text(AppLocalizations.of(context)!.hapticFeedback,
                               style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                   color:
@@ -190,7 +192,7 @@ class _CommonDrawerState extends ConsumerState<CommonDrawer> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text('Theme',
+                          Text(AppLocalizations.of(context)!.theme,
                               style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                   color:
@@ -306,7 +308,7 @@ class _CommonDrawerState extends ConsumerState<CommonDrawer> {
                               Icons.info_outline,
                               color: Theme.of(context).colorScheme.secondary,
                             ),
-                            Text('      About',
+                            Text('      ${AppLocalizations.of(context)!.about}',
                                 style: TextStyle(
                                     fontWeight: FontWeight.bold,
                                     color: Theme.of(context)

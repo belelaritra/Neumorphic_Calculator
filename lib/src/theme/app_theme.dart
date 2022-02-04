@@ -7,9 +7,7 @@ class AppTheme {
       scaffoldBackgroundColor: Colors.grey[300],
       colorScheme: ColorScheme(
           primary: const Color(0xFFDBDBF9), //using this for button background
-          primaryVariant: const Color(0xFFDBDBF9),
           secondary: const Color(0xFF4d4d6e), //using this button text
-          secondaryVariant: const Color(0xFF4d4d6e),
           surface: const Color(
               0xFF8686b2), //using this as equals to button background
           background: const Color(0xFFF8C6C6), //using this as clear button
@@ -27,9 +25,7 @@ class AppTheme {
       scaffoldBackgroundColor: const Color(0xFF121212),
       colorScheme: const ColorScheme(
           primary: Color(0xFF12121a),
-          primaryVariant: Color(0xFF262636),
           secondary: Color(0xFFDBDBF9),
-          secondaryVariant: Color(0xFFDBDBF9),
           surface: Color(0xFF30304e),
           background: Color(0xFF291d1d),
           error: Color(0xFFff0000),
