@@ -26,7 +26,7 @@ Widget buildCircleButton(
       shadowLightColor: upperShadow,
       boxShape: const NeumorphicBoxShape.circle(),
     ),
-    padding: const EdgeInsets.all(24.0),
+    padding: const EdgeInsets.all(20.0),
     child: Center(
       child: Text(
         buttonVal,

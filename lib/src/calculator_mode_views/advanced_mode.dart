@@ -35,7 +35,7 @@ class AdvancedMode extends ConsumerWidget {
                     NeumorphicBoxShape.roundRect(BorderRadius.circular(25)),
               ),
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Consumer(
                     builder: (context, ref, _) {
