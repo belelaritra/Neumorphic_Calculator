@@ -175,7 +175,7 @@ class Buttons extends StatelessWidget {
                   Theme.of(context).colorScheme.onSurface,
                   Theme.of(context).colorScheme.onBackground),
               buildRectangleButton(
-                  '<-',
+                  '⌫',
                   height,
                   width,
                   ref,

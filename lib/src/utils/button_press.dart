@@ -52,7 +52,7 @@ class ButtonPress {
         ref.read(historyProvider.state).state = _history;
       }
       //backspace
-      else if (btnVal == '<-') {
+      else if (btnVal == '⌫') {
         if (_expression.isNotEmpty) {
           if (moreThanOneCharExpr.hasMatch(_expression)) {
             _expression = _expression.substring(0, _expression.length - 4);
