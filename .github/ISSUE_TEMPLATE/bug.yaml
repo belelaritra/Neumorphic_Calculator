@@ -22,10 +22,15 @@ body:
     attributes:
       label: What happened?
       description: Also tell us, what did you expect to happen?
-      placeholder: Tell us what you see!
-      value: "A bug happened!"
+      value: "Steps to reproduce:\n\n\nDetails:\n\n\nExpected Behavior:"
     validations:
       required: true
+  - type: textarea
+    id: sample-code-snippets
+    attributes:
+      label: Code block related to the issue
+      description: In case you manage to identify what's causing this bug, please provide it here.
+      value: "```\nPaste the faulty code here\n```"
   - type: dropdown
     id: version
     attributes:
@@ -54,7 +59,7 @@ body:
     attributes:
       label: Sample Screenshots
       description: Please drag & drop some sample screenshots here (is any)
-      placeholder: Chick here & then Drag & Drop your image / video files
+      placeholder: Click here & then Drag & Drop your image / video files
   - type: checkboxes
     id: terms
     attributes:

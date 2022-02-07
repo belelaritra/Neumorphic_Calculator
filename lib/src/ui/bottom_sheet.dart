@@ -28,8 +28,7 @@ class _BottomSheetState extends ConsumerState<BottomSheet> {
                     color: Theme.of(context).scaffoldBackgroundColor,
                     shadowDarkColor: Theme.of(context).colorScheme.onBackground,
                     shadowLightColor: Theme.of(context).colorScheme.onSurface,
-                    boxShape:
-                        NeumorphicBoxShape.roundRect(BorderRadius.circular(10)),
+                    boxShape: const NeumorphicBoxShape.circle(),
                   ),
                   onPressed: () {
                     Navigator.pop(context);
@@ -50,8 +49,7 @@ class _BottomSheetState extends ConsumerState<BottomSheet> {
                     color: Theme.of(context).scaffoldBackgroundColor,
                     shadowDarkColor: Theme.of(context).colorScheme.onBackground,
                     shadowLightColor: Theme.of(context).colorScheme.onSurface,
-                    boxShape:
-                        NeumorphicBoxShape.roundRect(BorderRadius.circular(10)),
+                    boxShape: const NeumorphicBoxShape.circle(),
                   ),
                   onPressed: () async {
                     await HistoryDatabase.instance

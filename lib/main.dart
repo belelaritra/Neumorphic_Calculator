@@ -88,8 +88,8 @@ class _MyAppState extends ConsumerState<MyApp> {
           Locale('en', ''), //English
           Locale('ru', ''), //Russian
           Locale('pl', ''), //Polish
-          Locale('bn', ''), //Polish
-          Locale('hi', ''), //Polish
+          Locale('bn', ''), //Bengali
+          Locale('hi', ''), //Hindi
         ],
         debugShowCheckedModeBanner: false,
         theme: AppTheme.lightTheme,
