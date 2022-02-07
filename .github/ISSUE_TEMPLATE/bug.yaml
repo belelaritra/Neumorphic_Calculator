@@ -1,0 +1,70 @@
+name: Bug Report
+description: File a bug report
+title: "[Bug]: "
+labels: ["bug"]
+assignees:
+  - octocat
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to fill out this bug report!
+  - type: input
+    id: contact
+    attributes:
+      label: Contact Details
+      description: How can we get in touch with you if we need more info (if any)?
+      placeholder: ex. email@example.com
+    validations:
+      required: false
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: Also tell us, what did you expect to happen?
+      value: "Steps to reproduce:\n\n\nDetails:\n\n\nExpected Behavior:"
+    validations:
+      required: true
+  - type: textarea
+    id: sample-code-snippets
+    attributes:
+      label: Code block related to the issue
+      description: In case you manage to identify what's causing this bug, please provide it here.
+      value: "```\nPaste the faulty code here\n```"
+  - type: dropdown
+    id: version
+    attributes:
+      label: Version
+      description: What version of our app are you running?
+      options:
+        - 1.0
+        - 1.1
+    validations:
+      required: true
+  - type: dropdown
+    id: android-version
+    attributes:
+      label: In which Android Version you are facing the problem?
+      options:
+        - Lollipop (5.0 - 5.1.1)
+        - Marshmallow (6.0 – 6.0.1)
+        - Nougat (7.0 - 7.1.2)
+        - Oreo (8.0 - 8.1)
+        - Pie (9)
+        - Q (10)
+        - Red Velvet Cake (11)
+        - Snow Cone (12)
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: Sample Screenshots
+      description: Please drag & drop some sample screenshots here (is any)
+      placeholder: Click here & then Drag & Drop your image / video files
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Code of Conduct
+      description: By submitting this issue, you agree to follow our [Code of Conduct](https://github.com/belelaritra/Neumorphic_Calculator/tree/main/.github/TEMPLATE/CODE_OF_CONDUCT.md)
+      options:
+        - label: I agree to follow this project's Code of Conduct
+          required: true

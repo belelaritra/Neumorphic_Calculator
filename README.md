@@ -7,7 +7,7 @@ A Soft UI Calculator using Flutter.
 &nbsp;&nbsp;&nbsp;&nbsp;[<img src="https://img.shields.io/badge/GitHub-181717?logo=github&logoColor=white"
      alt="Download from GitHub"
      height="60">](https://github.com/belelaritra/Neumorphic_Calculator/releases)
-     
+
 [<img src="https://fdroid.gitlab.io/artwork/badge/get-it-on.png"
      alt="Get it on F-Droid"
      height="100">](https://f-droid.org/packages/com.neumorphic.calculator/)
@@ -26,3 +26,7 @@ A Soft UI Calculator using Flutter.
 ### Dark Mode
   <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/simple-dark.png" height="400" />&nbsp;<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/advanced-dark.png" height="400" />&nbsp;<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/history-dark.png" height="400" />&nbsp;<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/drawer-dark.png" height="400" />
 </p>
+
+#### List of Contributors:
+- [Valdnet](https://github.com/Valdnet) (Translation to Polish)
+- [leestarb](https://github.com/leestarb) (Translation to Russian)

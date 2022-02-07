@@ -11,6 +11,7 @@ import 'src/calculator_mode_views/calculator_mode_view_rebuilder.dart';
 import 'src/theme/app_theme.dart';
 import 'src/theme/theme_controller.dart';
 
+//declaring all the providers in main.dart, that can be accessed by importing main.dart
 final expressionProvider =
     StateProvider((ref) => ''); //stores the current expression
 final historyProvider =
@@ -55,6 +56,12 @@ class _MyAppState extends ConsumerState<MyApp> {
         themeController
             .changeTheme(themeMode == 1 ? ThemeMode.light : ThemeMode.dark);
       }
+
+      //checks for the user's preferred mode and rebuilds the body section by calling the toggleMode function
+      final int mode = value.getInt('calculator_mode') ?? 0;
+      mode == 0
+          ? calculatorMode.toggleMode(CalculatorModeEnum.simple)
+          : calculatorMode.toggleMode(CalculatorModeEnum.advanced);
       ref.read(radianProvider.state).state = value.getBool('is_radian') ?? true;
     });
   }
@@ -81,6 +88,8 @@ class _MyAppState extends ConsumerState<MyApp> {
           Locale('en', ''), //English
           Locale('ru', ''), //Russian
           Locale('pl', ''), //Polish
+          Locale('bn', ''), //Bengali
+          Locale('hi', ''), //Hindi
         ],
         debugShowCheckedModeBanner: false,
         theme: AppTheme.lightTheme,

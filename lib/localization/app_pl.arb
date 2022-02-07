@@ -1,10 +1,10 @@
 {
-	"title": "<TO-BE-DONE>",
-	"about": "<TO-BE-DONE>",
-	"hapticFeedback": "<TO-BE-DONE>",
-	"theme": "<TO-BE-DONE>",
-	"advanced": "<TO-BE-DONE>",
-	"history": "<TO-BE-DONE>",
-	"historyEmpty": "<TO-BE-DONE>",
-	"settings": "<TO-BE-DONE>"
+	"title": "Kalkulator",
+	"about": "O aplikacji",
+	"hapticFeedback": "Dotykowa informacja zwrotna",
+	"theme": "Motyw",
+	"advanced": "Zaawansowany",
+	"history": "Historia",
+	"historyEmpty": "Nie ma nic do pokazania :(",
+	"settings": "Ustawienia"
 }

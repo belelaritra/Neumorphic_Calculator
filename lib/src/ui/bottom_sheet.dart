@@ -23,6 +23,22 @@ class _BottomSheetState extends ConsumerState<BottomSheet> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
+              NeumorphicButton(
+                  style: NeumorphicStyle(
+                    color: Theme.of(context).scaffoldBackgroundColor,
+                    shadowDarkColor: Theme.of(context).colorScheme.onBackground,
+                    shadowLightColor: Theme.of(context).colorScheme.onSurface,
+                    boxShape: const NeumorphicBoxShape.circle(),
+                  ),
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  child: Center(
+                    child: Icon(
+                      Icons.arrow_back_ios_new,
+                      color: Theme.of(context).colorScheme.secondary,
+                    ),
+                  )),
               Text(AppLocalizations.of(context)!.history,
                   style: TextStyle(
                       fontSize: 20,
@@ -33,8 +49,7 @@ class _BottomSheetState extends ConsumerState<BottomSheet> {
                     color: Theme.of(context).scaffoldBackgroundColor,
                     shadowDarkColor: Theme.of(context).colorScheme.onBackground,
                     shadowLightColor: Theme.of(context).colorScheme.onSurface,
-                    boxShape:
-                        NeumorphicBoxShape.roundRect(BorderRadius.circular(10)),
+                    boxShape: const NeumorphicBoxShape.circle(),
                   ),
                   onPressed: () async {
                     await HistoryDatabase.instance

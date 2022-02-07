@@ -28,7 +28,7 @@ Widget buildRectangleButton(
         shadowLightColor: upperShadow,
         boxShape: NeumorphicBoxShape.roundRect(BorderRadius.circular(30)),
       ),
-      padding: const EdgeInsets.all(24.0),
+      padding: const EdgeInsets.all(20.0),
       child: Center(
         child: Text(
           buttonVal,
