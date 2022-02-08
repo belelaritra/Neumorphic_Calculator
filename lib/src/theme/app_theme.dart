@@ -19,10 +19,15 @@ class AppTheme {
               Colors.blueGrey.shade200, //using this as lower shadow color
           onError:
               const Color(0xFFFFFFFF), //using this as equals to button text
-          brightness: Brightness.light));
+          brightness: Brightness.light,
+          primaryVariant: const Color(
+              0xFFDBDBF9), // this was using for nothing. But was requred by ColorScheme
+          secondaryVariant: const Color(
+              0xFF4d4d6e) // this was using for nothing. But was requred by ColorScheme
+          ));
 
   static final darkTheme = ThemeData(
-      scaffoldBackgroundColor: const Color(0xFF121212),
+      scaffoldBackgroundColor: const Color(0xFF171616),
       colorScheme: const ColorScheme(
           primary: Color(0xFF12121a),
           secondary: Color(0xFFDBDBF9),
@@ -34,5 +39,7 @@ class AppTheme {
           onSurface: Color(0xFF1f1f1f),
           onBackground: Color(0xFF050505),
           onError: Color(0xFFFFFFFF),
-          brightness: Brightness.dark));
+          brightness: Brightness.dark,
+          primaryVariant: Color(0xFF12121a),
+          secondaryVariant: Color(0xFFDBDBF9)));
 }
