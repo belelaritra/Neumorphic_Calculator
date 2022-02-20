@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 // ignore: depend_on_referenced_packages
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
@@ -8,6 +9,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../main.dart';
 import '../calculator_mode_views/calculator_mode.dart';
+import '../theme/app_theme.dart';
 import '../utils/url_launcher.dart';
 
 class CommonDrawer extends ConsumerStatefulWidget {
@@ -19,6 +21,13 @@ class CommonDrawer extends ConsumerStatefulWidget {
 
 class _CommonDrawerState extends ConsumerState<CommonDrawer> {
   late final _prefs;
+
+  Color pickerColor = const Color(0xff443a49);
+
+  // ValueChanged<Color> callback
+  void changeColor(Color color) {
+    setState(() => pickerColor = color);
+  }
 
   Future<void> loadSharedPreferencesInstance() async {
     _prefs = await SharedPreferences.getInstance();
@@ -255,6 +264,8 @@ class _CommonDrawerState extends ConsumerState<CommonDrawer> {
                                           Vibrate.feedback(
                                               FeedbackType.success);
                                         }
+                                        AppTheme.lightTheme =
+                                            AppTheme.customTheme;
                                         Navigator.of(context).pop();
                                         themeController
                                             .changeTheme(ThemeMode.light);
@@ -312,6 +323,91 @@ class _CommonDrawerState extends ConsumerState<CommonDrawer> {
                     child: Neumorphic(
                       style: customNeumorphicStyle,
                       child: Container(
+                          height: height * 0.07,
+                          padding: EdgeInsets.only(
+                              left: width * 0.05, right: width * 0.05),
+                          decoration: BoxDecoration(
+                              color: Theme.of(context).colorScheme.primary,
+                              borderRadius: const BorderRadius.only(
+                                  topRight: Radius.circular(100.0),
+                                  bottomRight: Radius.circular(100.0))),
+                          child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text('Custom Theme',
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .secondary)),
+                                Consumer(builder: (context, ref, _) {
+                                  return InkWell(
+                                    splashColor: Colors.transparent,
+                                    highlightColor: Colors.transparent,
+                                    onTap: () async {
+                                      if (ref
+                                          .watch(hapticFeedbackProvider.state)
+                                          .state) {
+                                        Vibrate.feedback(FeedbackType.success);
+                                      }
+                                      await showDialog(
+                                          context: context,
+                                          builder: (BuildContext context) {
+                                            return AlertDialog(
+                                                title:
+                                                    const Text('Pick a color!'),
+                                                content: SingleChildScrollView(
+                                                  child: HueRingPicker(
+                                                    pickerColor: pickerColor,
+                                                    onColorChanged: changeColor,
+                                                  ),
+                                                ),
+                                                actions: <Widget>[
+                                                  FloatingActionButton(
+                                                    heroTag: 'save',
+                                                    foregroundColor:
+                                                        Colors.black,
+                                                    backgroundColor:
+                                                        Colors.white,
+                                                    onPressed: () {
+                                                      setDarkTheme(pickerColor);
+                                                      Navigator.of(context)
+                                                          .pop();
+                                                    },
+                                                    child: const Icon(
+                                                      Icons.check,
+                                                      size: 20,
+                                                    ),
+                                                  )
+                                                ]);
+                                          }).then((_) async {
+                                        Navigator.of(context).pop();
+                                        themeController
+                                            .changeTheme(ThemeMode.system);
+                                        await _prefs.setInt('theme_mode', 0);
+                                      });
+                                    },
+                                    child: Icon(
+                                      Icons.color_lens,
+                                      color: themeController.currentTheme ==
+                                              ThemeMode.system
+                                          ? Theme.of(context)
+                                              .colorScheme
+                                              .secondary
+                                          : Theme.of(context)
+                                              .colorScheme
+                                              .surface,
+                                    ),
+                                  );
+                                })
+                              ])),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(top: height * 0.018),
+                    child: Neumorphic(
+                      style: customNeumorphicStyle,
+                      child: Container(
                         height: height * 0.07,
                         padding: EdgeInsets.only(
                             left: width * 0.05, right: width * 0.05),
@@ -350,5 +446,24 @@ class _CommonDrawerState extends ConsumerState<CommonDrawer> {
         ),
       ),
     );
+  }
+
+  void setDarkTheme(Color color) {
+    AppTheme.lightTheme = ThemeData(
+        scaffoldBackgroundColor: color,
+        colorScheme: const ColorScheme(
+            primary: Color(0xFF12121a),
+            secondary: Color(0xFFDBDBF9),
+            surface: Color(0xFF30304e),
+            background: Color(0xFF291d1d),
+            error: Color(0xFFff0000),
+            onPrimary: Color(0xFFDBDBF9),
+            onSecondary: Color(0xFF262636),
+            onSurface: Color(0xFF1f1f1f),
+            onBackground: Color(0xFF050505),
+            onError: Color(0xFFFFFFFF),
+            brightness: Brightness.dark,
+            primaryVariant: Color(0xFF12121a),
+            secondaryVariant: Color(0xFFDBDBF9)));
   }
 }
