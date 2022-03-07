@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class AppTheme {
   AppTheme._();
 
-  static final lightTheme = ThemeData(
+  static late ThemeData lightTheme = ThemeData(
       scaffoldBackgroundColor: Colors.grey[300],
       colorScheme: ColorScheme(
           primary: const Color(0xFFDBDBF9), //using this for button background
@@ -26,7 +26,7 @@ class AppTheme {
               0xFF4d4d6e) // this was using for nothing. But was requred by ColorScheme
           ));
 
-  static final darkTheme = ThemeData(
+  static final ThemeData darkTheme = ThemeData(
       scaffoldBackgroundColor: const Color(0xFF171616),
       colorScheme: const ColorScheme(
           primary: Color(0xFF12121a),
@@ -42,4 +42,22 @@ class AppTheme {
           brightness: Brightness.dark,
           primaryVariant: Color(0xFF12121a),
           secondaryVariant: Color(0xFFDBDBF9)));
+
+  // Used to fix light theme when the custom theme overwrite it
+  static final ThemeData customTheme = ThemeData(
+      scaffoldBackgroundColor: Colors.grey[300],
+      colorScheme: ColorScheme(
+          primary: const Color(0xFFDBDBF9),
+          secondary: const Color(0xFF4d4d6e),
+          surface: const Color(0xFF8686b2),
+          background: const Color(0xFFF8C6C6),
+          error: const Color(0xFFff0000),
+          onPrimary: const Color(0xFFDBDBF9),
+          onSecondary: const Color(0xFF262636),
+          onSurface: Colors.white,
+          onBackground: Colors.blueGrey.shade200,
+          onError: const Color(0xFFFFFFFF),
+          brightness: Brightness.light,
+          primaryVariant: const Color(0xFFDBDBF9),
+          secondaryVariant: const Color(0xFF4d4d6e)));
 }
