@@ -1,0 +1,4 @@
+Mendukung tema terang, gelap, dan baku sistem.
+Memiliki mode simpel dan lanjutan.
+Menyimpan operasi yang dilakukan sebelumnya.
+Tersedia Umpan Balik Sentuhan.

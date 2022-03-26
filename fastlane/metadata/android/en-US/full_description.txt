@@ -1,4 +1,4 @@
 Supports light, dark and system default theme.
-Has simple and advnced modes.
+Has simple and advanced modes.
 Stores previously performed operations.
 Comes with Haptic Feedbacks.
