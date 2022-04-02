@@ -1,0 +1,4 @@
+Açık, koyu ve sistem varsayılan temasını destekler.
+Basit ve gelişmiş kiplere sahiptir.
+Daha önce gerçekleştirilen işlemleri depolar.
+Titreşim geri bildirimi ile gelir.
