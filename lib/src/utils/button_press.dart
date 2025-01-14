@@ -38,6 +38,31 @@ class ButtonPress {
 
   int bracketCount = 0; //keeps track of currently open brackets
 
+  // Helper method to handle floating point precision
+  String _formatNumber(dynamic number) {
+    if (number is double) {
+      // Convert to string with high precision
+      String strNum = number.toString();
+      // If it's a whole number or already in simplified form, return as is
+      if (strNum.endsWith('.0')) {
+        return strNum.substring(0, strNum.length - 2);
+      }
+      // Convert back to double and round to 10 decimal places to handle precision issues
+      double rounded = double.parse(strNum);
+      rounded = (rounded * 1e10).round() / 1e10;
+      String result = rounded.toString();
+      // Remove trailing zeros after decimal point
+      if (result.contains('.')) {
+        result = result.replaceAll(RegExp(r'0*$'), '');
+        if (result.endsWith('.')) {
+          result = result.substring(0, result.length - 1);
+        }
+      }
+      return result;
+    }
+    return number.toString();
+  }
+
   buttonPressed(String btnVal, WidgetRef ref) {
     try {
       if (!ref.watch(calculatorDisplayDirectionProvider.state).state) {
@@ -83,13 +108,10 @@ class ButtonPress {
         _expression = _expression.replaceAll('e', '2.718281828459045');
         _expression = _expression.replaceAll('log(', 'log(10, ');
         exp = p.parse(_expression, ref.watch(radianProvider.state).state);
-        _expression = exp.evaluate(EvaluationType.REAL, cm).toString();
+        _expression = _formatNumber(exp.evaluate(EvaluationType.REAL, cm));
         if (_expression == 'NaN') {
           throw Exception('received **NaN**');
         } else {
-          _expression = _expression.endsWith('.0')
-              ? _expression.substring(0, _expression.length - 2)
-              : _expression;
           ref.watch(calculatorDisplayDirectionProvider.state).state = false;
           ref.read(expressionProvider.state).state = _expression;
           HistoryDatabase.instance
